@@ -19,12 +19,9 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family: 'Noto Sans TC', sans-serif;
-      background: url('https://images.unsplash.com/photo-1525498128493-380d1990a9d4?auto=format&fit=crop&q=80&w=2000') no-repeat center center fixed;
-      background-size: cover;
+      background: linear-gradient(to bottom, var(--pink), var(--skyblue));
       color: var(--dark);
       line-height: 1.7;
-      font-size: 1.05rem;
-      min-height: 100vh;
     }
     .container { max-width: 1000px; margin: 0 auto; padding: 15px; }
     header {
@@ -120,23 +117,23 @@
 </head>
 <body>
 
-  <div class="flight-info">
-    <h2>航班資訊 ✈️</h2>
-    <table class="flight-table">
-      <tr><th>航段</th><td>香港(T1航站樓) → 福岡</td></tr>
-      <tr><th>航班號</th><td>HB2366</td></tr>
-      <tr><th>日期</th><td>2026-03-28</td></tr>
-      <tr><th>起飛/到達</th><td>03:35 → 07:55</td></tr>
-      <tr><th>回程</th><td>福岡 → 香港(T1) HB2383 09:10 → 11:50 (2026-04-06)</td></tr>
-    </table>
-    <p class="note">早鳥航班記得帶頸枕和小朋友零食～</p>
-  </div>
+  
 
   <header>
     <h1>Gloria 一家 ✿ 福岡・佐賀・長崎 10天櫻花親子之旅</h1>
     <div class="subtitle">2026年3月28日 – 4月6日</div>
     <div class="meta">一家三口（10歲小朋友）｜自駕 + 公共交通 + 賞櫻野餐 + 親子樂園</div>
   </header>
+
+<div class="flight-info">
+    <h2>航班資訊 ✈️</h2>
+    <table class="flight-table">
+      <tr><th>航段</th><th>航班號</th><th>日期</th><th>起飛時間</th><th>到達時間</th></tr>
+      <tr><td>香港(T1航站樓) → 福岡</td><td>HB2366</td><td>2026-03-28</td><td>03:35</td><td>07:55</td></tr>
+      <tr><td>福岡 → 香港(T1航站樓)</td><td>HB2383</td><td>2026-04-06</td><td>09:10</td><td>11:50</td></tr>
+    </table>
+    <p class="note">早鳥航班記得帶頸枕和小朋友零食～</p>
+  </div>
 
   <nav class="menu">
     <button data-day="1" class="active">Day 1</button>
