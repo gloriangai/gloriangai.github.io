@@ -121,6 +121,66 @@
     .recommend { background: rgba(240,249,240,1); border-left-color: var(--skyblue); }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
+	
+	/* Expenses Section */
+    #expenses-section {
+      background: rgba(255,255,255,0.7);
+      border-radius: 20px;
+      margin: 40px 0;
+      padding: 25px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+    }
+    .expense-form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .expense-form select, .expense-form input {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    .expense-form button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #expenseTable {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    #expenseTable th, #expenseTable td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+    #expenseTable th { background: var(--pink); }
+    .delete-btn {
+      background: #ff6b6b;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .summary {
+      background: rgba(255,255,255,0.9);
+      padding: 15px;
+      border-radius: 12px;
+      margin: 20px 0;
+      font-weight: 600;
+    }
+    #pieChartContainer {
+      margin: 30px auto;
+      max-width: 380px;
+    }
+	
     footer { 
       text-align: center; 
       padding: 40px 15px; 
@@ -373,6 +433,69 @@
     </div>
 
   </div>
+  
+  
+  <!-- ==================== 新增：開支記錄功能 ==================== -->
+  <div id="expenses-section" class="container">
+    <h2 style="text-align:center; color:var(--accent); margin-bottom:20px;">開支記錄</h2>
+
+    <!-- 新增表單 -->
+    <div class="expense-form">
+      <select id="expDay">
+        <option value="">Day</option>
+        <option value="1">Day 1</option>
+        <option value="2">Day 2</option>
+        <option value="3">Day 3</option>
+        <option value="4">Day 4</option>
+        <option value="5">Day 5</option>
+        <option value="6">Day 6</option>
+        <option value="7">Day 7</option>
+        <option value="8">Day 8</option>
+        <option value="9">Day 9</option>
+        <option value="10">Day 10</option>
+      </select>
+      <input type="text" id="expPerson" placeholder="人名 (e.g. Gloria)">
+      <select id="expCategory">
+        <option value="">分類</option>
+        <option value="食">食</option>
+        <option value="買">買</option>
+        <option value="玩">玩</option>
+        <option value="住">住</option>
+        <option value="機票">機票</option>
+        <option value="交通">交通</option>
+      </select>
+      <input type="text" id="expDesc" placeholder="項目描述">
+      <input type="number" id="expPrice" placeholder="價錢" step="0.01">
+      <button onclick="addExpense()">新增開支</button>
+    </div>
+
+    <!-- 開支表格 -->
+    <table id="expenseTable">
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>人名</th>
+          <th>分類</th>
+          <th>描述</th>
+          <th>價錢</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <!-- 總結 -->
+    <div class="summary" id="summary">
+      <strong>總支出：</strong> <span id="totalExpense">0</span> 元<br>
+      <strong>每人平均：</strong> <span id="perPerson">0</span> 元 (假設3人)
+    </div>
+
+    <!-- Pie Chart -->
+    <div id="pieChartContainer">
+      <canvas id="pieChart"></canvas>
+    </div>
+  </div>
+  
 
   <footer>
     製作於 2026年3月 • Gloria一家櫻花冒險 ✿ 祝旅途愉快！
