@@ -34,11 +34,11 @@
     }
 
     .flight-info {
-      background: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,1);
       border-radius: 16px;
       padding: 20px;
       margin: 15px auto 20px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      box-shadow: 0 6px 20px rgba(0,0,0,1);
       border: 2px solid var(--accent);
     }
     .flight-info table { width: 100%; border-collapse: collapse; }
@@ -47,12 +47,12 @@
       border-bottom: 1px solid #e0e8f0; 
       text-align: left; 
     }
-    .flight-info th { background: var(--pink); color: var(--accent); width: 40%; }
+    .flight-info th { background: var(--pink); color: var(--accent); }
 
     .menu {
-      background: rgba(255,255,255,0.95);
-      padding: 12px 10px;
-      margin: 10px 0 25px;
+      background: rgba(255,255,255,0.7);
+      padding: 5px 5px;
+      margin: 5px 0 5px;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       display: flex;
@@ -78,7 +78,7 @@
     }
 
     .day-card {
-      background: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,1);
       border-radius: 20px;
       margin: 30px 0;
       box-shadow: 0 6px 20px rgba(0,0,0,0.07);
@@ -109,16 +109,16 @@
     .day-content { padding: 10px 20px 25px; }
     table { width: 100%; border-collapse: collapse; margin: 15px 0; }
     th, td { padding: 12px 10px; border-bottom: 1px solid #e0e8f0; }
-    th { background: var(--pink); color: var(--accent); width: 30%; }
+    th { background: var(--pink); color: var(--accent);  }
     .highlight { color: var(--accent); font-weight: 600; }
     .note, .recommend {
-      background: rgba(248,252,255,0.9);
+      background: rgba(248,252,255,1);
       padding: 15px;
       border-radius: 12px;
       margin: 20px 0;
       border-left: 5px solid var(--accent);
     }
-    .recommend { background: rgba(240,249,240,0.9); border-left-color: var(--green); }
+    .recommend { background: rgba(240,249,240,1); border-left-color: var(--green); }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
     footer { 
@@ -178,14 +178,15 @@
 
     <!-- Day 1 -->
     <div id="day1" class="day-card active">
-      <div class="day-header">Day 1 - 28/3 (Sat)</div>
-      <div class="day-content">
-        <div class="weather-box">
+		<div class="weather-box">
           <strong>2026 櫻花季天氣預測（福岡地區）</strong><br>
           開花約 3/20　｜　滿開約 3/29<br>
           當日氣溫：15–20°C，春季溫和，偶有春雨<br>
           建議：帶薄外套、雨具、防曬
         </div>
+      <div class="day-header">Day 1 - 28/3 (Sat)</div>
+      <div class="day-content">
+        
         <table>
           <tr><th data-label="時間">03:35</th><td>香港T1出發 → 福岡機場 (HB2366)</td></tr>
           <tr><th data-label="時間">07:55</th><td>抵達福岡機場，入境 + 取行李</td></tr>
