@@ -89,10 +89,10 @@
 
     <!-- TAB NAV -->
     <div class="flex border-b border-pink-200 bg-white sticky top-[88px] z-40">
-        <button onclick="switchTab(0)" id="tab0" class="nav-active flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
+        <button onclick="switchTab(1)" id="tab1" class="nav-active flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
             <i class="fas fa-plane"></i> 航班
         </button>
-        <button onclick="switchTab(1)" id="tab1" class="flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
+        <button onclick="switchTab(0)" id="tab0" class="flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
             <i class="fas fa-calendar-alt"></i> 行程
         </button>
         <button onclick="switchTab(2)" id="tab2" class="flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
@@ -109,8 +109,8 @@
     <!-- CONTENT -->
     <div id="content" class="px-5 pt-6 max-w-xl mx-auto">
 
-        <!-- TAB 0: 航班 -->
-        <div id="tab-content-0" class="space-y-6">
+        <!-- TAB 1: 航班 -->
+        <div id="tab-content-1" class="space-y-6">
             <div class="card p-8">
                 <h2 class="text-xl font-bold mb-6 flex items-center gap-3"><i class="fas fa-plane-departure text-sky-500"></i> 出發航班 28/03/2026</h2>
                 <div class="grid grid-cols-2 gap-6">
@@ -143,8 +143,8 @@
             </div>
         </div>
 
-        <!-- TAB 1: 行程 -->
-        <div id="tab-content-1" class="hidden space-y-10">
+        <!-- TAB 0: 行程 -->
+        <div id="tab-content-0" class="hidden space-y-10">
 
             <!-- Day 1 -->
             <div class="card p-6">
