@@ -139,8 +139,8 @@
                         <div class="text-xl text-gray-700">Day 1 • 豪斯登堡</div>
                     </div>
                     <div id="weather-day1" class="text-right min-w-[80px]">
-                        <div class="text-4xl weather-icon">⛅</div>
-                        <div class="text-xs text-gray-500 mt-1">28 Mar 預報</div>
+                        <div class="text-4xl weather-icon">⏳</div>
+                        <div class="text-xs text-gray-500 mt-1">loading...</div>
                     </div>
                 </div>
 
@@ -208,8 +208,8 @@
                         <div class="text-xl text-gray-700">Day 2 • 長崎</div>
                     </div>
                     <div id="weather-day2" class="text-right min-w-[80px]">
-                        <div class="text-4xl weather-icon">🌥️</div>
-                        <div class="text-xs text-gray-500 mt-1">29 Mar 預報</div>
+                        <div class="text-4xl weather-icon">⏳</div>
+                        <div class="text-xs text-gray-500 mt-1">loading...</div>
                     </div>
                 </div>
 
@@ -377,37 +377,36 @@
 
         // 日期專屬天氣（顯示「當天」預報）
         async function fetchWeatherForDate(lat, lon, targetDateStr, elementId, dayLabel) {
-            try {
-                const target = new Date(targetDateStr);
-                const today = new Date();
-                today.setHours(0,0,0,0);
-                const offset = Math.floor((target - today) / 86400000);
-                
-                if (offset < 0 || offset > 14) {
-                    document.getElementById(elementId).innerHTML = `<div class="text-xs text-gray-400">預報已過期</div>`;
-                    return;
-                }
-                
-                const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode,temperature_2m_max&timezone=Asia%2FTokyo&forecast_days=${offset + 3}`;
-                const res = await fetch(url);
-                const data = await res.json();
-                
-                const code = data.daily.weathercode[offset];
-                let emoji = '⛅';
-                if ([0,1,2,3].includes(code)) emoji = '☀️';
-                else if ([45,48].includes(code)) emoji = '🌫️';
-                else if (code >= 51) emoji = '🌧️';
-                
-                const temp = Math.round(data.daily.temperature_2m_max[offset]);
-                document.getElementById(elementId).innerHTML = `
-                    <div class="text-4xl weather-icon">${emoji}</div>
-                    <div class="text-xs font-medium">${temp}°C</div>
-                    <div class="text-[10px] text-gray-500">${dayLabel}</div>
-                `;
-            } catch(e) {
-                document.getElementById(elementId).innerHTML = `<div class="text-xs text-gray-400">天氣載入失敗</div>`;
-            }
-        }
+        try {
+            const target = new Date(targetDateStr);
+            const today = new Date();
+            today.setHours(0,0,0,0);
+            const offset = Math.floor((target - today) / 86400000);
+            
+            const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FTokyo&forecast_days=${offset + 3}`;
+            const res = await fetch(url);
+            const data = await res.json();
+            
+            const code = data.daily.weathercode[offset];
+            let emoji = '⛅';
+            if ([0,1,2,3].includes(code)) emoji = '☀️';
+            else if ([45,48].includes(code)) emoji = '🌫️';
+            else if (code >= 51) emoji = '🌧️';
+            
+            const minTemp = Math.round(data.daily.temperature_2m_min[offset]);
+            const maxTemp = Math.round(data.daily.temperature_2m_max[offset]);
+            const rainProb = data.daily.precipitation_probability_max[offset] || 0;
+            
+            document.getElementById(elementId).innerHTML = `
+                <div class="text-4xl weather-icon">${emoji}</div>
+                <div class="font-medium text-lg">${minTemp} - ${maxTemp}°C</div>
+                <div class="text-xs text-blue-600">💧${rainProb}%</div>
+                <div class="text-[10px] text-gray-500">${dayLabel} 當天預報</div>
+            `;
+        } catch(e) {
+            document.getElementById(elementId).innerHTML = `<div class="text-xs text-gray-400">天氣載入失敗</div>`;
+			}
+		}
 
         // 預算功能
         let budgetItems = [];
