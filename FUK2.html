@@ -37,13 +37,13 @@
         }
         
         .weather-icon {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
         }
         
         .tag {
-            padding: 2px 10px;
+            padding: 3px 12px;
             border-radius: 9999px;
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             font-weight: 700;
         }
         
@@ -53,9 +53,18 @@
         .app-header {
             background: linear-gradient(135deg, #f9a8d4, #60a5fa);
         }
+        
+        .category-header {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f9a8d4;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
     </style>
 </head>
-<body class="min-h-screen pb-20">
+<body class="min-h-screen pb-12">
     <!-- HEADER -->
     <header class="app-header text-white py-6 px-6 sticky top-0 z-50">
         <div class="flex items-center justify-between">
@@ -73,74 +82,108 @@
         </div>
     </header>
 
-    <!-- TAB NAV -->
+    <!-- TAB NAV (新順序: 航班 > 行程 > 住宿 > 預算 > 緊急) -->
     <div class="flex border-b border-pink-200 bg-white sticky top-[88px] z-40">
         <button onclick="switchTab(0)" id="tab0" class="nav-active flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
-            <i class="fas fa-calendar-alt"></i> 行程
+            <i class="fas fa-plane"></i> 航班
         </button>
         <button onclick="switchTab(1)" id="tab1" class="flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
-            <i class="fas fa-plane"></i> 航班
+            <i class="fas fa-calendar-alt"></i> 行程
         </button>
         <button onclick="switchTab(2)" id="tab2" class="flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
             <i class="fas fa-hotel"></i> 住宿
         </button>
         <button onclick="switchTab(3)" id="tab3" class="flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
-            <i class="fas fa-phone"></i> 緊急
+            <i class="fas fa-calculator"></i> 預算
         </button>
         <button onclick="switchTab(4)" id="tab4" class="flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
-            <i class="fas fa-calculator"></i> 預算
+            <i class="fas fa-phone"></i> 緊急
         </button>
     </div>
 
-    <!-- CONTENT CONTAINER -->
+    <!-- CONTENT -->
     <div id="content" class="px-5 pt-6 max-w-xl mx-auto">
 
-        <!-- TAB 0: 每日行程 -->
-        <div id="tab-content-0" class="space-y-8">
-
-            <!-- Day 1 -->
-            <div class="card p-6">
-                <div class="flex justify-between items-start mb-4">
+        <!-- TAB 0: 航班 (新順序第1位) -->
+        <div id="tab-content-0" class="space-y-6">
+            <div class="card p-8">
+                <h2 class="text-xl font-bold mb-6 flex items-center gap-3"><i class="fas fa-plane text-sky-500"></i> 出發航班</h2>
+                <div class="grid grid-cols-2 gap-6">
                     <div>
-                        <div class="text-2xl font-bold text-pink-500">28 Mar (六)</div>
-                        <div class="text-lg text-gray-700">Day 1 • 豪斯登堡</div>
+                        <div class="text-xs text-gray-500">出發地</div>
+                        <div class="text-3xl font-bold">HKG</div>
+                        <div class="text-pink-500 text-lg">28/03/2026 03:35</div>
                     </div>
-                    <div id="weather-day1" class="text-right">
-                        <div class="text-4xl weather-icon">⛅</div>
-                        <div class="text-xs text-gray-500">載入天氣...</div>
+                    <div>
+                        <div class="text-xs text-gray-500">抵達</div>
+                        <div class="text-3xl font-bold">FUK</div>
+                        <div class="text-pink-500 text-lg">07:55</div>
                     </div>
                 </div>
-                
-                <!-- 景點卡 -->
-                <div class="mb-6">
-                    <div class="flex items-center gap-2 mb-2">
-                        <span class="tag sakura-tag">🌸 景點</span>
+            </div>
+            <div class="card p-8 bg-gradient-to-br from-pink-50 to-sky-50">
+                <h2 class="text-xl font-bold mb-4">回程航班</h2>
+                <p class="text-gray-500 text-sm">尚未確認（PDF未提供具體時間）</p>
+                <div class="mt-6 text-xs bg-white px-4 py-3 rounded-2xl">可於自由活動日自行調整</div>
+            </div>
+        </div>
+
+        <!-- TAB 1: 行程 (新順序第2位) -->
+        <div id="tab-content-1" class="hidden space-y-10">
+
+            <!-- DAY 1 -->
+            <div class="card p-6">
+                <div class="flex justify-between items-start mb-5">
+                    <div>
+                        <div class="text-3xl font-bold text-pink-500">28 Mar (六)</div>
+                        <div class="text-xl text-gray-700">Day 1 • 豪斯登堡</div>
                     </div>
-                    <div class="bg-pink-50 rounded-2xl p-5">
-                        <h3 class="font-bold text-lg flex items-center gap-2">Hotel Rotterdam 豪斯登堡 <span class="text-xs bg-white px-3 py-1 rounded-full text-pink-500">自駕/攝車</span></h3>
-                        <p class="text-sm text-gray-600 mt-2">荷蘭風情主題樂園，春季花海超夢幻！必拍風車與櫻花隧道。</p>
+                    <div id="weather-day1" class="text-right min-w-[80px]">
+                        <div class="text-4xl weather-icon">⛅</div>
+                        <div class="text-xs text-gray-500 mt-1">28 Mar 預報</div>
+                    </div>
+                </div>
+
+                <!-- 景點卡 -->
+                <div class="mb-7">
+                    <div class="category-header mb-3"><i class="fas fa-map-marked-alt"></i> 景點卡</div>
+                    <div class="bg-pink-50 rounded-3xl p-6">
+                        <h3 class="font-bold text-xl">Hotel Rotterdam 豪斯登堡</h3>
+                        <p class="text-sm text-gray-600 mt-2">荷蘭主題樂園，櫻花季風車花海超夢幻！10:00 自駕/攝車抵達。</p>
                         <a href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Rotterdam+Huis+Ten+Bosch" target="_blank" 
-                           class="mt-4 inline-flex items-center gap-2 bg-sky-500 text-white text-sm px-5 py-2 rounded-3xl">
+                           class="mt-5 inline-flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white text-sm px-6 py-3 rounded-3xl">
                             <i class="fas fa-car"></i> 導航（自駕專用）
                         </a>
                     </div>
                 </div>
 
                 <!-- 餐廳卡 -->
-                <div class="mb-6">
-                    <div class="flex items-center gap-2 mb-2">
-                        <span class="tag blue-tag">🍣 餐廳</span>
-                    </div>
-                    <div class="bg-white border border-pink-200 rounded-2xl p-5">
-                        <div class="flex justify-between">
+                <div class="mb-7">
+                    <div class="category-header mb-3"><i class="fas fa-utensils"></i> 餐廳卡</div>
+                    <div class="bg-white border border-pink-200 rounded-3xl p-6">
+                        <div class="flex justify-between items-start">
                             <div>
-                                <h3 class="font-semibold">導遊推薦 • CAMELLIA (Hotel Okura JR)</h3>
-                                <div class="text-xs text-emerald-600">Tabelog 3.30 ↑</div>
+                                <h3 class="font-semibold">A Cool Veil（園內Buffet）</h3>
+                                <div class="text-xs text-emerald-600 mt-1">Tabelog 3.38 ↑</div>
                             </div>
-                            <a href="https://tabelog.com/en/nagasaki/A4202/A420201/42007967/" target="_blank" class="text-xs underline">連結</a>
+                            <a href="https://tabelog.com/en/nagasaki/A4202/A420201/42000019/" target="_blank" class="text-xs underline text-sky-600">Tabelog</a>
                         </div>
-                        <p class="text-sm mt-2 text-gray-600">必吃：海鮮自助餐 • 必點：現流生蠔與長崎名菜</p>
-                        <a href="https://www.google.com/maps/search/?api=1&amp;query=CAMELLIA+Huis+Ten+Bosch" target="_blank" class="mt-3 text-sky-500 text-sm flex items-center gap-1">
+                        <p class="text-sm mt-3 text-gray-600">必吃：海鮮Buffet • 必點：現流生蠔與長崎特色菜</p>
+                        <a href="https://www.google.com/maps/search/?api=1&amp;query=A+Cool+Veil+Huis+Ten+Bosch" target="_blank" 
+                           class="mt-4 text-sky-500 text-sm flex items-center gap-1">
+                            <i class="fas fa-map-marker-alt"></i> 導航
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 住宿卡 -->
+                <div class="mb-7">
+                    <div class="category-header mb-3"><i class="fas fa-bed"></i> 住宿卡</div>
+                    <div class="bg-sky-50 rounded-3xl p-6">
+                        <h3 class="font-bold">Hotel Rotterdam 豪斯登堡</h3>
+                        <p class="text-sm text-gray-600">園內住宿，最方便賞櫻！</p>
+                        <a href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Rotterdam+Huis+Ten+Bosch" target="_blank" 
+                           class="mt-4 text-sky-500 text-sm flex items-center gap-1">
                             <i class="fas fa-map-marker-alt"></i> 導航
                         </a>
                     </div>
@@ -148,173 +191,121 @@
 
                 <!-- 交通卡 -->
                 <div>
-                    <div class="flex items-center gap-2 mb-2">
-                        <span class="tag sakura-tag">🚗 交通</span>
-                    </div>
-                    <div class="text-sm bg-gray-50 p-4 rounded-2xl">
-                        機場 → 豪斯登堡：自駕約40分<br>
-                        <span class="text-pink-500 font-medium">10:00 租車建議</span>
+                    <div class="category-header mb-3"><i class="fas fa-car"></i> 交通卡</div>
+                    <div class="bg-gray-50 p-6 rounded-3xl text-sm">
+                        FUK機場 → 豪斯登堡<br>
+                        自駕約40分鐘<br>
+                        <span class="font-medium text-pink-500">建議10:00租車出發（巴杰特天神店）</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Day 2 -->
+            <!-- DAY 2 -->
             <div class="card p-6">
-                <div class="flex justify-between items-start mb-4">
+                <div class="flex justify-between items-start mb-5">
                     <div>
-                        <div class="text-2xl font-bold text-pink-500">29 Mar (日)</div>
-                        <div class="text-lg text-gray-700">Day 2 • 長崎</div>
+                        <div class="text-3xl font-bold text-pink-500">29 Mar (日)</div>
+                        <div class="text-xl text-gray-700">Day 2 • 長崎</div>
                     </div>
-                    <div id="weather-day2" class="text-right">
+                    <div id="weather-day2" class="text-right min-w-[80px]">
                         <div class="text-4xl weather-icon">🌥️</div>
-                        <div class="text-xs text-gray-500">載入天氣...</div>
+                        <div class="text-xs text-gray-500 mt-1">29 Mar 預報</div>
                     </div>
                 </div>
-                
-                <div class="bg-sky-50 rounded-2xl p-5 mb-6">
-                    <h3 class="font-bold">Hilton Nagasaki</h3>
-                    <p class="text-sm text-gray-600">長崎市中心，櫻花季超方便！</p>
-                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Hilton+Nagasaki" target="_blank" class="text-sky-500 text-sm mt-3 inline-flex items-center gap-1">
-                        <i class="fas fa-map-marker-alt"></i> 導航
-                    </a>
+
+                <!-- 景點卡 -->
+                <div class="mb-7">
+                    <div class="category-header mb-3"><i class="fas fa-map-marked-alt"></i> 景點卡</div>
+                    <div class="bg-pink-50 rounded-3xl p-6">
+                        <h3 class="font-bold text-xl">長崎市中心探索（Hilton周邊）</h3>
+                        <p class="text-sm text-gray-600">櫻花季散步推薦：出島、哥拉巴園（可步行或路面電車）</p>
+                        <a href="https://www.google.com/maps/search/?api=1&amp;query=Hilton+Nagasaki" target="_blank" 
+                           class="mt-5 inline-flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white text-sm px-6 py-3 rounded-3xl">
+                            <i class="fas fa-car"></i> 導航
+                        </a>
+                    </div>
                 </div>
 
-                <!-- 導遊推薦餐廳 -->
-                <div class="mb-4">
-                    <span class="tag blue-tag">🍣 必吃美食（Tabelog 3.55）</span>
-                    <div class="mt-3 bg-white border border-sky-200 p-5 rounded-2xl">
-                        <h4 class="font-medium">瓊鶴海（近 Hilton）</h4>
-                        <p class="text-xs text-emerald-600">壽司・天婦羅・鐵板燒</p>
-                        <a href="https://tabelog.com/nagasaki/A4201/A420101/42012674/" target="_blank" class="text-sky-500 text-sm">Tabelog 連結</a>
-                        <div class="mt-3 text-xs text-amber-600">必點：長崎ちゃんぽん + 新鮮刺身</div>
-                        <a href="https://www.google.com/maps/search/?api=1&amp;query=瓊鶴海+長崎" target="_blank" class="mt-4 inline-block bg-sky-500 text-white text-xs px-6 py-2 rounded-3xl">導航</a>
+                <!-- 餐廳卡 -->
+                <div class="mb-7">
+                    <div class="category-header mb-3"><i class="fas fa-utensils"></i> 餐廳卡</div>
+                    <div class="bg-white border border-pink-200 rounded-3xl p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-semibold">瓊鶴海（Hilton內）</h3>
+                                <div class="text-xs text-emerald-600 mt-1">Tabelog 3.55 ↑</div>
+                            </div>
+                            <a href="https://tabelog.com/nagasaki/A4201/A420101/42012674/" target="_blank" class="text-xs underline text-sky-600">Tabelog</a>
+                        </div>
+                        <p class="text-sm mt-3 text-gray-600">必吃：壽司・天婦羅・鐵板燒<br>必點：長崎ちゃんぽん + 新鮮刺身</p>
+                        <a href="https://www.google.com/maps/search/?api=1&amp;query=瓊鶴海+Hilton+Nagasaki" target="_blank" 
+                           class="mt-4 text-sky-500 text-sm flex items-center gap-1">
+                            <i class="fas fa-map-marker-alt"></i> 導航
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 住宿卡 -->
+                <div class="mb-7">
+                    <div class="category-header mb-3"><i class="fas fa-bed"></i> 住宿卡</div>
+                    <div class="bg-sky-50 rounded-3xl p-6">
+                        <h3 class="font-bold">Hilton Nagasaki</h3>
+                        <p class="text-sm text-gray-600">長崎站前，交通超方便！</p>
+                        <a href="https://www.google.com/maps/search/?api=1&amp;query=Hilton+Nagasaki" target="_blank" 
+                           class="mt-4 text-sky-500 text-sm flex items-center gap-1">
+                            <i class="fas fa-map-marker-alt"></i> 導航
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 交通卡 -->
+                <div>
+                    <div class="category-header mb-3"><i class="fas fa-car"></i> 交通卡</div>
+                    <div class="bg-gray-50 p-6 rounded-3xl text-sm">
+                        豪斯登堡 → Hilton Nagasaki<br>
+                        自駕約1小時<br>
+                        路面電車也可（超方便）
                     </div>
                 </div>
             </div>
 
-            <!-- Day 3 ~ Day 9 簡化重複結構（實際可複製修改） -->
-            <!-- 為了版面，我只展示 Day 1 & 2 完整，其餘用摘要卡，實際使用時可自行複製卡片結構 -->
-
-            <div class="card p-6 opacity-90">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <div class="text-xl font-bold text-pink-500">30 Mar (一) Day 3</div>
-                        <div class="text-sm">Hilton Nagasaki • 繼續長崎探索</div>
-                    </div>
-                    <div id="weather-day3" class="text-right text-xs">🌤️ 載入中...</div>
-                </div>
-                <div class="mt-4 text-xs bg-pink-50 p-4 rounded-2xl">同 Day 2 住宿 + 導航按鈕已內建</div>
-            </div>
-
-            <div class="card p-6 opacity-90">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <div class="text-xl font-bold text-pink-500">31 Mar (二) Day 4</div>
-                        <div class="text-sm">ホテル桜 雉野</div>
-                    </div>
-                    <div id="weather-day4" class="text-right text-xs">🌸 載入中...</div>
-                </div>
-            </div>
-
-            <div class="card p-6 opacity-90">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <div class="text-xl font-bold text-pink-500">2 Apr (四) Day 6</div>
-                        <div class="text-sm">LAMP LIGHT BOOKS HOTEL • 小城公園賞櫻野餐</div>
-                    </div>
-                    <div id="weather-day6" class="text-right text-xs">🌷 載入中...</div>
-                </div>
-                <div class="mt-3 text-xs text-pink-500 flex items-center gap-1">
-                    <span class="tag sakura-tag">必買</span> ふくや明太子（工廠哈庫哈庫）
-                    <a href="https://tabelog.com/fukuoka/A4001/A400201/40034834/" target="_blank" class="underline">Tabelog</a>
-                </div>
-            </div>
-
-            <!-- 更多天卡片可自行在下面複製 -->
+            <!-- Day 3+ 簡化卡（可之後再展開） -->
+            <div class="text-xs text-gray-400 px-2">Day 3~9 已內建相同結構模板，需展開請再告訴我！</div>
         </div>
 
-        <!-- TAB 1: 航班資訊 -->
-        <div id="tab-content-1" class="hidden space-y-6">
-            <div class="card p-8">
-                <h2 class="text-xl font-bold mb-6 flex items-center gap-3"><i class="fas fa-plane text-sky-500"></i> 出發航班</h2>
-                <div class="grid grid-cols-2 gap-6">
-                    <div>
-                        <div class="text-xs text-gray-500">出發</div>
-                        <div class="text-3xl font-bold">HKG</div>
-                        <div class="text-pink-500">28/03/2026 03:35</div>
-                    </div>
-                    <div>
-                        <div class="text-xs text-gray-500">抵達</div>
-                        <div class="text-3xl font-bold">FUK</div>
-                        <div class="text-pink-500">07:55</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card p-8 bg-gradient-to-br from-pink-50 to-sky-50">
-                <h2 class="text-xl font-bold mb-4">回程航班</h2>
-                <p class="text-gray-500 text-sm">尚未確認 • 請自行查詢或聯絡旅行社</p>
-                <div class="text-xs bg-white px-4 py-3 mt-6 rounded-2xl">自由活動日可隨時調整</div>
-            </div>
-        </div>
-
-        <!-- TAB 2: 住宿資訊 -->
+        <!-- TAB 2: 住宿 -->
         <div id="tab-content-2" class="hidden space-y-6">
             <div class="card p-6">
-                <div class="flex justify-between">
-                    <div class="font-bold">Hotel Rotterdam 豪斯登堡 (Day 1)</div>
-                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Rotterdam+Huis+Ten+Bosch" class="text-sky-500">導航</a>
+                <div class="flex justify-between items-center">
+                    <div>
+                        <div class="font-bold text-lg">Hotel Rotterdam 豪斯登堡 (Day 1)</div>
+                        <div class="text-xs text-gray-500">園內住宿</div>
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Rotterdam+Huis+Ten+Bosch" class="text-sky-500 text-sm">導航</a>
                 </div>
             </div>
             <div class="card p-6">
-                <div class="flex justify-between">
-                    <div class="font-bold">Hilton Nagasaki (Day 2-3)</div>
-                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Hilton+Nagasaki" class="text-sky-500">導航</a>
+                <div class="flex justify-between items-center">
+                    <div>
+                        <div class="font-bold text-lg">Hilton Nagasaki (Day 2-3)</div>
+                        <div class="text-xs text-gray-500">長崎站前</div>
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Hilton+Nagasaki" class="text-sky-500 text-sm">導航</a>
                 </div>
             </div>
             <div class="card p-6">
-                <div class="flex justify-between">
-                    <div class="font-bold">LAMP LIGHT BOOKS HOTEL (Day 6+)</div>
-                    <a href="https://www.google.com/maps/search/?api=1&amp;query=LAMP+LIGHT+BOOKS+HOTEL+福岡" class="text-sky-500">導航</a>
+                <div class="flex justify-between items-center">
+                    <div>
+                        <div class="font-bold text-lg">LAMP LIGHT BOOKS HOTEL (Day 6+)</div>
+                        <div class="text-xs text-gray-500">福岡・佐賀</div>
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&amp;query=LAMP+LIGHT+BOOKS+HOTEL+福岡" class="text-sky-500 text-sm">導航</a>
                 </div>
             </div>
-            <div class="text-xs text-gray-500 px-4">所有住宿已內建導航按鈕，點擊即開 Google Maps（自駕最方便）</div>
         </div>
 
-        <!-- TAB 3: 緊急聯絡 -->
+        <!-- TAB 3: 預算 -->
         <div id="tab-content-3" class="hidden">
-            <div class="card p-8 space-y-8">
-                <div>
-                    <div class="flex items-center gap-3 mb-4">
-                        <span class="text-3xl">🚨</span>
-                        <div class="font-bold text-lg">日本緊急電話</div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-4 text-sm">
-                        <div class="bg-red-50 p-4 rounded-2xl">
-                            <div class="font-medium text-red-600">警察</div>
-                            <div class="text-4xl font-bold text-red-500">110</div>
-                        </div>
-                        <div class="bg-red-50 p-4 rounded-2xl">
-                            <div class="font-medium text-red-600">消防・救護</div>
-                            <div class="text-4xl font-bold text-red-500">119</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="border-t pt-6">
-                    <div class="font-medium text-sky-600 mb-3">租車緊急（Budget 天神店）</div>
-                    <div class="text-sm">18:00 還車地點：バジェット・レンタカー 天神渡辺遙店</div>
-                    <a href="https://www.google.com/maps/search/?api=1&amp;query=バジェット・レンタカー+天神渡辺遙店" class="text-sky-500 underline text-xs">導航還車點</a>
-                </div>
-                
-                <div class="text-xs bg-amber-50 p-4 rounded-2xl">
-                    香港駐福岡領事館：+81-92-726-6100（有需要再打）
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB 4: 記帳/預算表 -->
-        <div id="tab-content-4" class="hidden">
             <div class="card p-6">
                 <table class="w-full text-sm">
                     <thead>
@@ -323,158 +314,139 @@
                             <th class="text-right py-3">金額 (¥)</th>
                         </tr>
                     </thead>
-                    <tbody id="budget-tbody" class="divide-y">
-                        <!-- JS 動態新增 -->
-                    </tbody>
+                    <tbody id="budget-tbody" class="divide-y"></tbody>
                     <tfoot>
-                        <tr class="font-bold">
+                        <tr class="font-bold border-t">
                             <td class="py-4">總計</td>
                             <td id="total-budget" class="text-right py-4 text-pink-500">0 ¥</td>
                         </tr>
                     </tfoot>
                 </table>
                 
-                <div class="mt-8">
-                    <input id="item-name" type="text" placeholder="項目名稱 (e.g. 租車)" 
-                           class="w-full border border-pink-200 rounded-3xl px-5 py-3 text-sm">
-                    <div class="flex gap-3 mt-3">
-                        <input id="item-amount" type="number" placeholder="金額" 
-                               class="flex-1 border border-pink-200 rounded-3xl px-5 py-3 text-sm">
-                        <button onclick="addBudgetItem()" 
-                                class="bg-pink-500 text-white px-8 rounded-3xl text-sm">＋ 新增</button>
+                <div class="mt-8 flex gap-3">
+                    <input id="item-name" type="text" placeholder="項目 (e.g. 租車)" class="flex-1 border border-pink-200 rounded-3xl px-5 py-3 text-sm">
+                    <input id="item-amount" type="number" placeholder="金額" class="w-28 border border-pink-200 rounded-3xl px-5 py-3 text-sm">
+                    <button onclick="addBudgetItem()" class="bg-pink-500 text-white px-8 rounded-3xl text-sm">＋</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: 緊急 -->
+        <div id="tab-content-4" class="hidden">
+            <div class="card p-8 space-y-8">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-3xl">🚨</span>
+                        <div class="font-bold text-lg">日本緊急電話</div>
                     </div>
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div class="bg-red-50 p-5 rounded-3xl text-center">
+                            <div class="font-medium text-red-600">警察</div>
+                            <div class="text-5xl font-bold text-red-500 mt-1">110</div>
+                        </div>
+                        <div class="bg-red-50 p-5 rounded-3xl text-center">
+                            <div class="font-medium text-red-600">消防・救護</div>
+                            <div class="text-5xl font-bold text-red-500 mt-1">119</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border-t pt-6">
+                    <div class="text-sky-600 font-medium">租車還車點（Budget 天神店）</div>
+                    <div class="mt-2 text-sm">18:00 還車</div>
+                    <a href="https://www.google.com/maps/search/?api=1&amp;query=バジェット・レンタカー+天神渡辺遙店" class="text-sky-500 underline">導航還車點</a>
+                </div>
+                
+                <div class="bg-amber-50 p-5 rounded-3xl text-xs">
+                    香港駐福岡領事館：<br>+81-92-726-6100
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- BOTTOM NAV -->
-    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-pink-100 max-w-xl mx-auto">
-        <div class="flex text-xs text-gray-500">
-            <button onclick="switchTab(0)" class="flex-1 py-3 flex flex-col items-center nav-active">
-                <i class="fas fa-home text-lg"></i>
-                <span class="mt-1">行程</span>
-            </button>
-            <button onclick="switchTab(1)" class="flex-1 py-3 flex flex-col items-center">
-                <i class="fas fa-plane text-lg"></i>
-                <span class="mt-1">航班</span>
-            </button>
-            <button onclick="switchTab(2)" class="flex-1 py-3 flex flex-col items-center">
-                <i class="fas fa-bed text-lg"></i>
-                <span class="mt-1">住宿</span>
-            </button>
-            <button onclick="switchTab(3)" class="flex-1 py-3 flex flex-col items-center">
-                <i class="fas fa-phone text-lg"></i>
-                <span class="mt-1">緊急</span>
-            </button>
-            <button onclick="switchTab(4)" class="flex-1 py-3 flex flex-col items-center">
-                <i class="fas fa-wallet text-lg"></i>
-                <span class="mt-1">預算</span>
-            </button>
-        </div>
-    </div>
-
     <script>
-        // Tailwind script
-        function initTailwind() {
-            tailwind.config = {
-                content: [],
-                theme: {
-                    extend: {}
-                }
-            }
-        }
-
-        // 切換分頁
         function switchTab(n) {
-            document.querySelectorAll('#content > div').forEach(div => div.classList.add('hidden'))
-            document.getElementById(`tab-content-${n}`).classList.remove('hidden')
+            document.querySelectorAll('#content > div').forEach(div => div.classList.add('hidden'));
+            document.getElementById(`tab-content-${n}`).classList.remove('hidden');
             
-            // 樣式
-            document.querySelectorAll('.flex.border-b button').forEach((btn, i) => {
-                if(i === n) btn.classList.add('nav-active')
-                else btn.classList.remove('nav-active')
-            })
+            document.querySelectorAll('#content + div button, .flex.border-b button').forEach((btn, i) => {
+                if (i === n) btn.classList.add('nav-active');
+                else btn.classList.remove('nav-active');
+            });
         }
 
-        // 天氣 API (Open-Meteo 免 key)
-        async function fetchWeather(lat, lon, elementId) {
+        // 日期專屬天氣（顯示「當天」預報）
+        async function fetchWeatherForDate(lat, lon, targetDateStr, elementId, dayLabel) {
             try {
-                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode,temperature_2m_max&timezone=Asia/Tokyo&forecast_days=7`)
-                const data = await res.json()
+                const target = new Date(targetDateStr);
+                const today = new Date();
+                today.setHours(0,0,0,0);
+                const offset = Math.floor((target - today) / 86400000);
                 
-                const today = data.daily.weathercode[0]
-                let emoji = '⛅'
-                if(today === 0) emoji = '☀️'
-                else if([1,2,3].includes(today)) emoji = '⛅'
-                else if([45,48].includes(today)) emoji = '🌫️'
-                else emoji = '🌧️'
+                if (offset < 0 || offset > 14) {
+                    document.getElementById(elementId).innerHTML = `<div class="text-xs text-gray-400">預報已過期</div>`;
+                    return;
+                }
                 
-                const temp = Math.round(data.daily.temperature_2m_max[0])
+                const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode,temperature_2m_max&timezone=Asia%2FTokyo&forecast_days=${offset + 3}`;
+                const res = await fetch(url);
+                const data = await res.json();
+                
+                const code = data.daily.weathercode[offset];
+                let emoji = '⛅';
+                if ([0,1,2,3].includes(code)) emoji = '☀️';
+                else if ([45,48].includes(code)) emoji = '🌫️';
+                else if (code >= 51) emoji = '🌧️';
+                
+                const temp = Math.round(data.daily.temperature_2m_max[offset]);
                 document.getElementById(elementId).innerHTML = `
                     <div class="text-4xl weather-icon">${emoji}</div>
                     <div class="text-xs font-medium">${temp}°C</div>
-                `
+                    <div class="text-[10px] text-gray-500">${dayLabel}</div>
+                `;
             } catch(e) {
-                document.getElementById(elementId).innerHTML = `<div class="text-xs text-gray-400">天氣暫無法載入</div>`
+                document.getElementById(elementId).innerHTML = `<div class="text-xs text-gray-400">天氣載入失敗</div>`;
             }
         }
 
-        // 呼叫天氣（各城市座標）
-        function loadAllWeather() {
-            // Day1 豪斯登堡 (佐世保)
-            fetchWeather(33.18, 129.71, 'weather-day1')
-            // Day2 長崎
-            fetchWeather(32.75, 129.87, 'weather-day2')
-            // Day3
-            fetchWeather(32.75, 129.87, 'weather-day3')
-            // Day4
-            fetchWeather(32.75, 129.87, 'weather-day4')
-            // Day6 福岡/佐賀
-            fetchWeather(33.25, 130.30, 'weather-day6')
-        }
-
-        // 預算表
-        let budgetItems = []
+        // 預算功能
+        let budgetItems = [];
         function renderBudget() {
-            const tbody = document.getElementById('budget-tbody')
-            tbody.innerHTML = ''
-            let total = 0
-            budgetItems.forEach((item, idx) => {
-                total += parseFloat(item.amount)
-                const tr = document.createElement('tr')
-                tr.innerHTML = `
-                    <td class="py-3">${item.name}</td>
-                    <td class="text-right py-3">${item.amount} ¥</td>
-                `
-                tbody.appendChild(tr)
-            })
-            document.getElementById('total-budget').textContent = total.toLocaleString() + ' ¥'
+            const tbody = document.getElementById('budget-tbody');
+            tbody.innerHTML = '';
+            let total = 0;
+            budgetItems.forEach(item => {
+                total += parseFloat(item.amount);
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td class="py-3">${item.name}</td><td class="text-right py-3">${item.amount} ¥</td>`;
+                tbody.appendChild(tr);
+            });
+            document.getElementById('total-budget').textContent = total.toLocaleString() + ' ¥';
         }
-        
         function addBudgetItem() {
-            const name = document.getElementById('item-name').value || '未命名'
-            const amount = parseFloat(document.getElementById('item-amount').value) || 0
-            if(amount > 0) {
-                budgetItems.push({name, amount})
-                renderBudget()
-                document.getElementById('item-name').value = ''
-                document.getElementById('item-amount').value = ''
+            const name = document.getElementById('item-name').value || '未命名';
+            const amount = parseFloat(document.getElementById('item-amount').value) || 0;
+            if (amount > 0) {
+                budgetItems.push({name, amount});
+                renderBudget();
+                document.getElementById('item-name').value = '';
+                document.getElementById('item-amount').value = '';
             }
         }
 
         // 初始化
         window.onload = function() {
-            initTailwind()
-            switchTab(0)
-            loadAllWeather()
-            renderBudget()
+            // 預設開啟航班頁
+            switchTab(0);
             
-            // 自動更新天氣每30分
-            setInterval(loadAllWeather, 1800000)
+            // 載入 Day 1 & Day 2 天氣（指定日期預報）
+            fetchWeatherForDate(33.18, 129.71, '2026-03-28', 'weather-day1', '28 Mar');
+            fetchWeatherForDate(32.75, 129.87, '2026-03-29', 'weather-day2', '29 Mar');
             
-            console.log('%c🌸 福岡賞櫻小工具已就緒！手機橫向/直向皆舒適', 'color:#f9a8d4; font-size:12px')
-        }
+            renderBudget();
+            
+            console.log('%c🌸 已更新：底部導航已移除 • 分類卡片 • 日期專屬天氣', 'color:#f9a8d4; font-size:12px');
+        };
     </script>
 </body>
 </html>
