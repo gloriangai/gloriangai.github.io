@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>🌸 福岡賞櫻2026</title>
+    <title>🌸 福岡賞櫻小工具 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&amp;family=Noto+Sans+SC:wght@400;700&amp;display=swap');
@@ -16,72 +17,7 @@
         body {
             font-family: 'Noto Sans SC', 'Noto Sans JP', system-ui, sans-serif;
             background: linear-gradient(to bottom, #e0f2fe, #fdf4ff);
-            margin: 0;
-            padding: 0;
         }
-        
-        /* === 全部 class 轉為純 CSS === */
-        .flex { display: flex; }
-        .justify-between { justify-content: space-between; }
-        .items-start { align-items: flex-start; }
-        .items-center { align-items: center; }
-        .gap-2 { gap: 0.5rem; }
-        .gap-3 { gap: 0.75rem; }
-        .gap-6 { gap: 1.5rem; }
-        
-        .grid { display: grid; }
-        .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
-        
-        .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
-        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
-        .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
-        .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
-        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
-        .text-xs { font-size: 0.75rem; line-height: 1rem; }
-        
-        .font-bold { font-weight: 700; }
-        .font-semibold { font-weight: 600; }
-        .font-medium { font-weight: 500; }
-        
-        .p-6 { padding: 1.5rem; }
-        .p-8 { padding: 2rem; }
-        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
-        .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
-        .px-5 { padding-left: 1.25rem; padding-right: 1.25rem; }
-        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
-        .px-8 { padding-left: 2rem; padding-right: 2rem; }
-        
-        .rounded-3xl { border-radius: 1.5rem; }
-        .rounded-2xl { border-radius: 1rem; }
-        .rounded-full { border-radius: 9999px; }
-        
-        .bg-white { background-color: #ffffff; }
-        .bg-pink-50 { background-color: #fce7f3; }
-        .bg-sky-50 { background-color: #e0f2fe; }
-        .bg-gray-50 { background-color: #f9fafb; }
-        .bg-red-50 { background-color: #fef2f2; }
-        .bg-amber-50 { background-color: #fffbeb; }
-        .bg-gradient-to-br { background: linear-gradient(to bottom right, #fce7f3, #e0f2fe); }
-        
-        .text-pink-500 { color: #f9a8d4; }
-        .text-sky-500 { color: #60a5fa; }
-        .text-gray-500 { color: #6b7280; }
-        .text-gray-700 { color: #374151; }
-        .text-gray-600 { color: #4b5563; }
-        .text-gray-400 { color: #9ca3af; }
-        .text-emerald-600 { color: #059669; }
-        .text-blue-600 { color: #0284c8; }
-        .text-red-500 { color: #ef4444; }
-        .text-red-600 { color: #dc2626; }
-        
-        .border { border: 1px solid #e5e7eb; }
-        .border-pink-200 { border-color: #fbcfe8; }
-        .border-b { border-bottom: 1px solid #e5e7eb; }
-        .divide-y > * + * { border-top: 1px solid #e5e7eb; }
-        
-        .min-w-\\[90px\\] { min-width: 90px; }
-        .inline-flex { display: inline-flex; }
-        .text-center { text-align: center; }
         
         .card {
             background: white;
@@ -89,6 +25,7 @@
             box-shadow: 0 10px 15px -3px rgb(249 168 212 / 0.1);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        
         .card:hover {
             transform: translateY(-4px);
             box-shadow: 0 20px 25px -5px rgb(249 168 212 / 0.15);
@@ -103,6 +40,16 @@
             font-size: 2.8rem;
         }
         
+        .tag {
+            padding: 3px 12px;
+            border-radius: 9999px;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+        
+        .sakura-tag { background: #fce7f3; color: #db2777; }
+        .blue-tag { background: #e0f2fe; color: #0369a1; }
+        
         .app-header {
             background: linear-gradient(135deg, #f9a8d4, #60a5fa);
         }
@@ -115,100 +62,84 @@
             align-items: center;
             gap: 8px;
         }
-        
-        a { text-decoration: none; }
-        a:hover { opacity: 0.85; }
-        
-        .sticky { position: sticky; }
-        .top-0 { top: 0; }
-        .z-50 { z-index: 50; }
-        .z-40 { z-index: 40; }
-        .max-w-xl { max-width: 42rem; }
-        .mx-auto { margin-left: auto; margin-right: auto; }
-        .hidden { display: none; }
-        .space-y-6 > * + * { margin-top: 1.5rem; }
-        .space-y-10 > * + * { margin-top: 2.5rem; }
-        .mb-5 { margin-bottom: 1.25rem; }
-        .mb-7 { margin-bottom: 1.75rem; }
     </style>
 </head>
 <body class="min-h-screen pb-12">
-
-<!-- HEADER -->
-<header class="app-header text-white py-6 px-6 sticky top-0 z-50">
-    <div class="flex items-center justify-between">
-        <div class="flex items-center gap-3">
-            <div class="w-10 h-10 bg-white/30 backdrop-blur rounded-2xl flex items-center justify-center text-3xl">🌸</div>
-            <div>
-                <h1 class="text-2xl font-bold tracking-tighter">福岡賞櫻2026</h1>
-                <p class="text-xs opacity-90">手機專用 • 日式極簡</p>
-            </div>
-        </div>
-        <div onclick="location.reload()" class="text-xs bg-white/20 px-3 py-1 rounded-full flex items-center gap-1 cursor-pointer">
-            <i class="fas fa-sync"></i>
-            <span>更新天氣</span>
-        </div>
-    </div>
-</header>
-
-<!-- TAB NAV -->
-<div class="flex border-b border-pink-200 bg-white sticky top-[88px] z-40">
-    <button onclick="switchTab(0)" id="tab0" class="nav-active flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
-        <i class="fas fa-plane"></i> 航班
-    </button>
-    <button onclick="switchTab(1)" id="tab1" class="flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
-        <i class="fas fa-calendar-alt"></i> 行程
-    </button>
-    <button onclick="switchTab(2)" id="tab2" class="flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
-        <i class="fas fa-hotel"></i> 住宿
-    </button>
-    <button onclick="switchTab(3)" id="tab3" class="flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
-        <i class="fas fa-calculator"></i> 預算
-    </button>
-    <button onclick="switchTab(4)" id="tab4" class="flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
-        <i class="fas fa-phone"></i> 緊急
-    </button>
-</div>
-
-<!-- CONTENT -->
-<div id="content" class="px-5 pt-6 max-w-xl mx-auto">
-
-    <!-- TAB 0: 航班 -->
-    <div id="tab-content-0" class="space-y-6">
-        <div class="card p-8">
-            <h2 class="text-xl font-bold mb-6 flex items-center gap-3"><i class="fas fa-plane-departure text-sky-500"></i> 出發航班 28/03/2026</h2>
-            <div class="grid grid-cols-2 gap-6">
+    <!-- HEADER -->
+    <header class="app-header text-white py-6 px-6 sticky top-0 z-50">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-white/30 backdrop-blur rounded-2xl flex items-center justify-center text-3xl">🌸</div>
                 <div>
-                    <div class="text-xs text-gray-500">出發地</div>
-                    <div class="text-3xl font-bold">HKG</div>
-                    <div class="text-pink-500 text-lg">03:35</div>
-                </div>
-                <div>
-                    <div class="text-xs text-gray-500">抵達</div>
-                    <div class="text-3xl font-bold">FUK</div>
-                    <div class="text-pink-500 text-lg">07:55</div>
+                    <h1 class="text-2xl font-bold tracking-tighter">福岡賞櫻2026</h1>
+                    <p class="text-xs opacity-90">手機專用 • 日式極簡</p>
                 </div>
             </div>
-        </div>
-        <div class="card p-8 bg-gradient-to-br">
-            <h2 class="text-xl font-bold mb-6 flex items-center gap-3"><i class="fas fa-plane-arrival text-sky-500"></i> 回程航班 06/04/2026</h2>
-            <div class="grid grid-cols-2 gap-6">
-                <div>
-                    <div class="text-xs text-gray-500">出發地</div>
-                    <div class="text-3xl font-bold">FUK</div>
-                    <div class="text-pink-500 text-lg">09:10</div>
-                </div>
-                <div>
-                    <div class="text-xs text-gray-500">抵達</div>
-                    <div class="text-3xl font-bold">HKG</div>
-                    <div class="text-pink-500 text-lg">11:50</div>
-                </div>
+            <div onclick="location.reload()" class="text-xs bg-white/20 px-3 py-1 rounded-full flex items-center gap-1 cursor-pointer">
+                <i class="fas fa-sync"></i>
+                <span>更新天氣</span>
             </div>
         </div>
+    </header>
+
+    <!-- TAB NAV (新順序: 航班 > 行程 > 住宿 > 預算 > 緊急) -->
+    <div class="flex border-b border-pink-200 bg-white sticky top-[88px] z-40">
+        <button onclick="switchTab(0)" id="tab0" class="nav-active flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
+            <i class="fas fa-plane"></i> 航班
+        </button>
+        <button onclick="switchTab(1)" id="tab1" class="flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
+            <i class="fas fa-calendar-alt"></i> 行程
+        </button>
+        <button onclick="switchTab(2)" id="tab2" class="flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
+            <i class="fas fa-hotel"></i> 住宿
+        </button>
+        <button onclick="switchTab(3)" id="tab3" class="flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
+            <i class="fas fa-calculator"></i> 預算
+        </button>
+        <button onclick="switchTab(4)" id="tab4" class="flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
+            <i class="fas fa-phone"></i> 緊急
+        </button>
     </div>
 
-    <!-- TAB 1: 行程 -->
-    <div id="tab-content-1" class="hidden space-y-10">
+    <!-- CONTENT -->
+    <div id="content" class="px-5 pt-6 max-w-xl mx-auto">
+
+        <!-- TAB 0: 航班 (新順序第1位) -->
+        <div id="tab-content-0" class="space-y-6">
+            <div class="card p-8">
+                <h2 class="text-xl font-bold mb-6 flex items-center gap-3"><i class="fas fa-plane-departure text-sky-500"></i> 出發航班 28/03/2026</h2>
+                <div class="grid grid-cols-2 gap-6">
+                    <div>
+                        <div class="text-xs text-gray-500">出發地</div>
+                        <div class="text-3xl font-bold">HKG</div>
+                        <div class="text-pink-500 text-lg">03:35</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500">抵達</div>
+                        <div class="text-3xl font-bold">FUK</div>
+                        <div class="text-pink-500 text-lg">07:55</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card p-8 bg-gradient-to-br from-pink-50 to-sky-50">
+                <h2 class="text-xl font-bold mb-6 flex items-center gap-3"><i class="fas fa-plane-arrival text-sky-500"></i> 回程航班 06/04/2026</h2>
+                <div class="grid grid-cols-2 gap-6">
+                    <div>
+                        <div class="text-xs text-gray-500">出發地</div>
+                        <div class="text-3xl font-bold">FUK</div>
+                        <div class="text-pink-500 text-lg">09:10</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-500">抵達</div>
+                        <div class="text-3xl font-bold">HKG</div>
+                        <div class="text-pink-500 text-lg">11:50</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 1: 行程 (新順序第2位) -->
+ <div id="tab-content-1" class="hidden space-y-10">
 
         <!-- Day 1 -->
         <div class="card p-6">
@@ -216,6 +147,7 @@
                 <div><div class="text-3xl font-bold text-pink-500">28 Mar (六)</div><div class="text-xl text-gray-700">Day 1 • 佐世保</div></div>
                 <div id="weather-day1" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
             </div>
+            <!-- 景點卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-map-marked-alt"></i> 景點卡</div>
                 <div class="bg-pink-50 rounded-3xl p-6">
@@ -224,6 +156,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Rotterdam+Huis+Ten+Bosch" target="_blank" class="mt-5 inline-flex items-center gap-2 bg-sky-500 text-white text-sm px-6 py-3 rounded-3xl"><i class="fas fa-car"></i> MAP</a>
                 </div>
             </div>
+            <!-- 餐廳卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-utensils"></i> 餐廳卡</div>
                 <div class="bg-white border border-pink-200 rounded-3xl p-6">
@@ -232,6 +165,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=A+Cool+Veil+Huis+Ten+Bosch" target="_blank" class="mt-4 text-sky-500 flex items-center gap-1"><i class="fas fa-map-marker-alt"></i> MAP</a>
                 </div>
             </div>
+            <!-- 住宿卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-bed"></i> 住宿卡</div>
                 <div class="bg-sky-50 rounded-3xl p-6">
@@ -239,6 +173,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Rotterdam+Huis+Ten+Bosch" target="_blank" class="text-sky-500">MAP</a>
                 </div>
             </div>
+            <!-- 交通卡 -->
             <div>
                 <div class="category-header mb-3"><i class="fas fa-car"></i> 交通卡</div>
                 <div class="bg-gray-50 p-6 rounded-3xl text-sm">
@@ -256,6 +191,7 @@
                 <div><div class="text-3xl font-bold text-pink-500">29 Mar (日)</div><div class="text-xl text-gray-700">Day 2 • 佐世保+長崎</div></div>
                 <div id="weather-day2" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
             </div>
+            <!-- 景點卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-map-marked-alt"></i> 景點卡</div>
                 <div class="bg-pink-50 rounded-3xl p-6">
@@ -263,6 +199,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=Hilton+Nagasaki" target="_blank" class="mt-5 inline-flex items-center gap-2 bg-sky-500 text-white text-sm px-6 py-3 rounded-3xl"><i class="fas fa-car"></i> MAP</a>
                 </div>
             </div>
+            <!-- 餐廳卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-utensils"></i> 餐廳卡</div>
                 <div class="bg-white border border-pink-200 rounded-3xl p-6">
@@ -271,6 +208,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=瓊鶴海+Hilton+Nagasaki" target="_blank" class="mt-4 text-sky-500 flex items-center gap-1"><i class="fas fa-map-marker-alt"></i> MAP</a>
                 </div>
             </div>
+            <!-- 住宿卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-bed"></i> 住宿卡</div>
                 <div class="bg-sky-50 rounded-3xl p-6">
@@ -278,6 +216,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=Hilton+Nagasaki" target="_blank" class="text-sky-500">MAP</a>
                 </div>
             </div>
+            <!-- 交通卡 -->
             <div>
                 <div class="category-header mb-3"><i class="fas fa-car"></i> 交通卡</div>
                 <div class="bg-gray-50 p-6 rounded-3xl text-sm">
@@ -293,17 +232,19 @@
                 <div><div class="text-3xl font-bold text-pink-500">30 Mar (一)</div><div class="text-xl text-gray-700">Day 3 • 長崎</div></div>
                 <div id="weather-day3" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
             </div>
+            <!-- 景點卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-map-marked-alt"></i> 景點卡</div>
                 <div class="bg-pink-50 rounded-3xl p-6">
                     <h3 class="font-bold text-xl">長崎のもざき恐竜パーク<br>稻佐山山頂展望台夜景</h3>
-                    <p class="text-sm text-gray-600 mt-2">恐龍公園 + 世界新三大夜景</p>
+					<p class="text-sm text-gray-600 mt-2">恐龍公園 + 世界新三大夜景</p>
                     <div class="mt-4 flex flex-wrap gap-3">
                         <a href="https://nd-park.jp/" target="_blank" class="text-xs bg-white px-4 py-2 rounded-3xl">恐龍公園官網</a>
                         <a href="https://www.google.com/maps/search/?api=1&query=稲佐山山頂展望台" target="_blank" class="text-xs bg-white px-4 py-2 rounded-3xl">夜景導航</a>
                     </div>
                 </div>
             </div>
+            <!-- 餐廳卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-utensils"></i> 餐廳卡</div>
                 <div class="bg-white border border-pink-200 rounded-3xl p-6">
@@ -312,6 +253,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=瓊鶴海+Hilton+Nagasaki" target="_blank" class="mt-4 text-sky-500 flex items-center gap-1"><i class="fas fa-map-marker-alt"></i> MAP</a>
                 </div>
             </div>
+            <!-- 住宿卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-bed"></i> 住宿卡</div>
                 <div class="bg-sky-50 rounded-3xl p-6">
@@ -319,6 +261,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=Hilton+Nagasaki" target="_blank" class="text-sky-500">MAP</a>
                 </div>
             </div>
+            <!-- 交通卡 -->
             <div>
                 <div class="category-header mb-3"><i class="fas fa-car"></i> 交通卡</div>
                 <div class="bg-gray-50 p-6 rounded-3xl text-sm">
@@ -335,6 +278,7 @@
                 <div><div class="text-3xl font-bold text-pink-500">31 Mar (二)</div><div class="text-xl text-gray-700">Day 4 • 九十九島 • 嬉野</div></div>
                 <div id="weather-day4" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
             </div>
+            <!-- 景點卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-map-marked-alt"></i> 景點卡</div>
                 <div class="bg-pink-50 rounded-3xl p-6">
@@ -345,6 +289,7 @@
                     </div>
                 </div>
             </div>
+            <!-- 餐廳卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-utensils"></i> 餐廳卡</div>
                 <div class="bg-white border border-pink-200 rounded-3xl p-6">
@@ -352,6 +297,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=稲佐山山頂+餐廳" target="_blank" class="mt-4 text-sky-500 flex items-center gap-1"><i class="fas fa-map-marker-alt"></i> MAP</a>
                 </div>
             </div>
+            <!-- 住宿卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-bed"></i> 住宿卡</div>
                 <div class="bg-sky-50 rounded-3xl p-6">
@@ -359,6 +305,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=ホテル桜+嬉野" target="_blank" class="text-sky-500">MAP</a>
                 </div>
             </div>
+            <!-- 交通卡 -->
             <div>
                 <div class="category-header mb-3"><i class="fas fa-car"></i> 交通卡</div>
                 <div class="bg-gray-50 p-6 rounded-3xl text-sm">
@@ -373,6 +320,7 @@
                 <div><div class="text-3xl font-bold text-pink-500">1 Apr (三)</div><div class="text-xl text-gray-700">Day 5 • 佐賀</div></div>
                 <div id="weather-day5" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
             </div>
+            <!-- 景點卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-map-marked-alt"></i> 景點卡</div>
                 <div class="bg-pink-50 rounded-3xl p-6">
@@ -380,6 +328,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=小城公園+佐賀" target="_blank" class="mt-5 inline-flex items-center gap-2 bg-sky-500 text-white text-sm px-6 py-3 rounded-3xl"><i class="fas fa-car"></i> MAP</a>
                 </div>
             </div>
+            <!-- 餐廳卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-utensils"></i> 餐廳卡</div>
                 <div class="bg-white border border-pink-200 rounded-3xl p-6">
@@ -387,6 +336,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=佐賀+餐廳" target="_blank" class="mt-4 text-sky-500 flex items-center gap-1"><i class="fas fa-map-marker-alt"></i> MAP</a>
                 </div>
             </div>
+            <!-- 住宿卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-bed"></i> 住宿卡</div>
                 <div class="bg-sky-50 rounded-3xl p-6">
@@ -394,6 +344,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=HAGAKUNE+2+佐賀" target="_blank" class="text-sky-500">MAP</a>
                 </div>
             </div>
+            <!-- 交通卡 -->
             <div>
                 <div class="category-header mb-3"><i class="fas fa-car"></i> 交通卡</div>
                 <div class="bg-gray-50 p-6 rounded-3xl text-sm">自駕</div>
@@ -406,6 +357,7 @@
                 <div><div class="text-3xl font-bold text-pink-500">2 Apr (四)</div><div class="text-xl text-gray-700">Day 6 • 返回福岡</div></div>
                 <div id="weather-day6" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
             </div>
+            <!-- 景點卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-map-marked-alt"></i> 景點卡</div>
                 <div class="bg-pink-50 rounded-3xl p-6">
@@ -413,6 +365,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=ふくや味の明太子工場+ハクハク" target="_blank" class="mt-4 text-sky-500 flex items-center gap-1"><i class="fas fa-map-marker-alt"></i> MAP</a>
                 </div>
             </div>
+            <!-- 餐廳卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-utensils"></i> 餐廳卡</div>
                 <div class="bg-white border border-pink-200 rounded-3xl p-6">
@@ -420,6 +373,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=LAMP+LIGHT+BOOKS+HOTEL+附近+餐廳" target="_blank" class="mt-4 text-sky-500 flex items-center gap-1"><i class="fas fa-map-marker-alt"></i> MAP</a>
                 </div>
             </div>
+            <!-- 住宿卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-bed"></i> 住宿卡</div>
                 <div class="bg-sky-50 rounded-3xl p-6">
@@ -427,6 +381,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=LAMP+LIGHT+BOOKS+HOTEL+福岡" target="_blank" class="text-sky-500">MAP</a>
                 </div>
             </div>
+            <!-- 交通卡 -->
             <div>
                 <div class="category-header mb-3"><i class="fas fa-car"></i> 交通卡</div>
                 <div class="bg-gray-50 p-6 rounded-3xl text-sm">
@@ -442,6 +397,7 @@
                 <div><div class="text-3xl font-bold text-pink-500">3 Apr (五)</div><div class="text-xl text-gray-700">Day 7 • Kidzania</div></div>
                 <div id="weather-day7" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
             </div>
+            <!-- 景點卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-map-marked-alt"></i> 景點卡</div>
                 <div class="bg-pink-50 rounded-3xl p-6">
@@ -449,23 +405,10 @@
                     <a href="https://www.kidzania.jp/en/fukuoka/top" target="_blank" class="mt-5 inline-flex items-center gap-2 bg-sky-500 text-white text-sm px-6 py-3 rounded-3xl"><i class="fas fa-car"></i> MAP</a>
                 </div>
             </div>
-            <div class="mb-7">
-                <div class="category-header mb-3"><i class="fas fa-utensils"></i> 餐廳卡</div>
-                <div class="bg-white border border-pink-200 rounded-3xl p-6">
-                    <div class="flex justify-between"><h3 class="font-semibold">福岡明太子或海鮮推薦</h3><div class="text-xs text-emerald-600">Tabelog 3.4+</div></div>
-                </div>
-            </div>
-            <div class="mb-7">
-                <div class="category-header mb-3"><i class="fas fa-bed"></i> 住宿卡</div>
-                <div class="bg-sky-50 rounded-3xl p-6">
-                    <h3 class="font-bold">LAMP LIGHT BOOKS HOTEL</h3>
-                    <a href="https://www.google.com/maps/search/?api=1&query=LAMP+LIGHT+BOOKS+HOTEL+福岡" target="_blank" class="text-sky-500">MAP</a>
-                </div>
-            </div>
-            <div>
-                <div class="category-header mb-3"><i class="fas fa-car"></i> 交通卡</div>
-                <div class="bg-gray-50 p-6 rounded-3xl text-sm">市內活動 • 自駕方便</div>
-            </div>
+            <!-- 餐廳卡 / 住宿卡 / 交通卡 同 Day 6 格式（略） -->
+            <div class="mb-7"><div class="category-header mb-3"><i class="fas fa-utensils"></i> 餐廳卡</div><div class="bg-white border border-pink-200 rounded-3xl p-6">福岡明太子或海鮮推薦 • Tabelog 3.4+</div></div>
+            <div class="mb-7"><div class="category-header mb-3"><i class="fas fa-bed"></i> 住宿卡</div><div class="bg-sky-50 rounded-3xl p-6"><h3 class="font-bold">LAMP LIGHT BOOKS HOTEL</h3><a href="https://www.google.com/maps/search/?api=1&query=LAMP+LIGHT+BOOKS+HOTEL+福岡" class="text-sky-500">MAP</a></div></div>
+            <div><div class="category-header mb-3"><i class="fas fa-car"></i> 交通卡</div><div class="bg-gray-50 p-6 rounded-3xl text-sm">市內活動 • 自駕方便</div></div>
         </div>
 
         <!-- Day 8 -->
@@ -474,6 +417,7 @@
                 <div><div class="text-3xl font-bold text-pink-500">4 Apr (六)</div><div class="text-xl text-gray-700">Day 8 • 海の中道</div></div>
                 <div id="weather-day8" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
             </div>
+            <!-- 景點卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-map-marked-alt"></i> 景點卡</div>
                 <div class="bg-pink-50 rounded-3xl p-6">
@@ -481,6 +425,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=海の中道" target="_blank" class="mt-5 inline-flex items-center gap-2 bg-sky-500 text-white text-sm px-6 py-3 rounded-3xl"><i class="fas fa-car"></i> MAP</a>
                 </div>
             </div>
+            <!-- 餐廳卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-utensils"></i> 餐廳卡</div>
                 <div class="bg-white border border-pink-200 rounded-3xl p-6">
@@ -489,6 +434,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=ふくや味の明太子工場+ハクハク" target="_blank" class="mt-4 text-sky-500 flex items-center gap-1"><i class="fas fa-map-marker-alt"></i> MAP</a>
                 </div>
             </div>
+            <!-- 住宿卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-bed"></i> 住宿卡</div>
                 <div class="bg-sky-50 rounded-3xl p-6">
@@ -496,9 +442,11 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=LAMP+LIGHT+BOOKS+HOTEL+福岡" target="_blank" class="text-sky-500">MAP</a>
                 </div>
             </div>
+            <!-- 交通卡 -->
             <div>
                 <div class="category-header mb-3"><i class="fas fa-car"></i> 交通卡</div>
-                <div class="bg-gray-50 p-6 rounded-3xl text-sm">市內活動 • 自駕方便</div>
+                <div class="bg-gray-50 p-6 rounded-3xl text-sm">市內活動 • 自駕方便
+                </div>
             </div>
         </div>
 
@@ -508,12 +456,15 @@
                 <div><div class="text-3xl font-bold text-pink-500">5 Apr (日)</div><div class="text-xl text-gray-700">Day 9 • LAMP LIGHT BOOKS HOTEL</div></div>
                 <div id="weather-day9" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
             </div>
+            <!-- 景點卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-map-marked-alt"></i> 景點卡</div>
                 <div class="bg-pink-50 rounded-3xl p-6">
                     <h3 class="font-bold text-xl">福岡自由活動</h3>
+                    
                 </div>
             </div>
+            <!-- 餐廳卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-utensils"></i> 餐廳卡</div>
                 <div class="bg-white border border-pink-200 rounded-3xl p-6">
@@ -521,6 +472,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=福岡+明太子+餐廳" target="_blank" class="mt-4 text-sky-500 flex items-center gap-1"><i class="fas fa-map-marker-alt"></i> MAP</a>
                 </div>
             </div>
+            <!-- 住宿卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-bed"></i> 住宿卡</div>
                 <div class="bg-sky-50 rounded-3xl p-6">
@@ -528,6 +480,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=LAMP+LIGHT+BOOKS+HOTEL+福岡" target="_blank" class="text-sky-500">MAP</a>
                 </div>
             </div>
+            <!-- 交通卡 -->
             <div>
                 <div class="category-header mb-3"><i class="fas fa-car"></i> 交通卡</div>
                 <div class="bg-gray-50 p-6 rounded-3xl text-sm">自由活動 • 還車已完成</div>
@@ -540,6 +493,7 @@
                 <div><div class="text-3xl font-bold text-pink-500">6 Apr (一)</div><div class="text-xl text-gray-700">Day 10 • 回程</div></div>
                 <div id="weather-day10" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
             </div>
+            <!-- 景點卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-map-marked-alt"></i> 景點卡</div>
                 <div class="bg-pink-50 rounded-3xl p-6">
@@ -547,6 +501,7 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=Fukuoka+Airport" target="_blank" class="mt-5 inline-flex items-center gap-2 bg-sky-500 text-white text-sm px-6 py-3 rounded-3xl"><i class="fas fa-car"></i> 導航機場</a>
                 </div>
             </div>
+            <!-- 餐廳卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-utensils"></i> 餐廳卡</div>
                 <div class="bg-white border border-pink-200 rounded-3xl p-6">
@@ -554,12 +509,14 @@
                     <p class="text-sm mt-3 text-gray-600">機場內明太子伴手禮店</p>
                 </div>
             </div>
+            <!-- 住宿卡 -->
             <div class="mb-7">
                 <div class="category-header mb-3"><i class="fas fa-bed"></i> 住宿卡</div>
                 <div class="bg-sky-50 rounded-3xl p-6">
                     <h3 class="font-bold">無住宿（回程日）</h3>
                 </div>
             </div>
+            <!-- 交通卡 -->
             <div>
                 <div class="category-header mb-3"><i class="fas fa-car"></i> 交通卡</div>
                 <div class="bg-gray-50 p-6 rounded-3xl text-sm">福岡市內 → FUK機場（大眾交通或計程車）</div>
@@ -568,124 +525,128 @@
 
     </div>
 
-    <!-- TAB 2: 住宿 -->
-    <div id="tab-content-2" class="hidden space-y-6">
-        <div class="card p-6">
-            <div class="flex justify-between items-center">
-                <div>
-                    <div class="font-bold text-lg">Day 1: Hotel Rotterdam</div>
-                    <div class="text-xs text-gray-500">園內住宿</div>
-                </div>
-                <a href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Rotterdam+Huis+Ten+Bosch" class="text-sky-500 text-sm">MAP</a>
-            </div>
-        </div>
-        <div class="card p-6">
-            <div class="flex justify-between items-center">
-                <div>
-                    <div class="font-bold text-lg">Day 2-3: Hilton Nagasaki</div>
-                    <div class="text-xs text-gray-500">長崎站前</div>
-                </div>
-                <a href="https://www.google.com/maps/search/?api=1&amp;query=Hilton+Nagasaki" class="text-sky-500 text-sm">MAP</a>
-            </div>
-        </div>
-        <div class="card p-6">
-            <div class="flex justify-between items-center">
-                <div>
-                    <div class="font-bold text-lg">Day 4: ホテル桜 嬉野</div>
-                    <div class="text-xs text-gray-500">嬉野</div>
-                </div>
-                <a href="https://www.google.com/maps/search/?api=1&amp;query=ホテル桜+嬉野" class="text-sky-500 text-sm">MAP</a>
-            </div>
-        </div>
-        <div class="card p-6">
-            <div class="flex justify-between items-center">
-                <div>
-                    <div class="font-bold text-lg">Day 5: 佐賀 HAGAKUNE 2</div>
-                    <div class="text-xs text-gray-500">佐賀</div>
-                </div>
-                <a href="https://www.google.com/maps/search/?api=1&query=HAGAKUNE+2+佐賀" target="_blank" class="text-sky-500 text-sm">MAP</a>
-            </div>
-        </div>
-        <div class="card p-6">
-            <div class="flex justify-between items-center">
-                <div>
-                    <div class="font-bold text-lg">Day 6-10: LAMP LIGHT BOOKS HOTEL</div>
-                    <div class="text-xs text-gray-500">福岡</div>
-                </div>
-                <a href="https://www.google.com/maps/search/?api=1&amp;query=LAMP+LIGHT+BOOKS+HOTEL+福岡" class="text-sky-500 text-sm">MAP</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- TAB 3: 預算 -->
-    <div id="tab-content-3" class="hidden">
-        <div class="card p-6">
-            <table class="w-full text-sm">
-                <thead>
-                    <tr class="border-b">
-                        <th class="text-left py-3">項目</th>
-                        <th class="text-right py-3">金額 (¥)</th>
-                    </tr>
-                </thead>
-                <tbody id="budget-tbody" class="divide-y"></tbody>
-                <tfoot>
-                    <tr class="font-bold border-t">
-                        <td class="py-4">總計</td>
-                        <td id="total-budget" class="text-right py-4 text-pink-500">0 ¥</td>
-                    </tr>
-                </tfoot>
-            </table>
-            <div class="mt-8 flex gap-3">
-                <input id="item-name" type="text" placeholder="項目 (e.g. 租車)" class="flex-1 border border-pink-200 rounded-3xl px-5 py-3 text-sm">
-                <input id="item-amount" type="number" placeholder="金額" class="w-28 border border-pink-200 rounded-3xl px-5 py-3 text-sm">
-                <button onclick="addBudgetItem()" class="bg-pink-500 text-white px-8 rounded-3xl text-sm">＋</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- TAB 4: 緊急 -->
-    <div id="tab-content-4" class="hidden">
-        <div class="card p-8 space-y-8">
-            <div>
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="text-3xl">🚨</span>
-                    <div class="font-bold text-lg">日本緊急電話</div>
-                </div>
-                <div class="grid grid-cols-2 gap-4 text-sm">
-                    <div class="bg-red-50 p-5 rounded-3xl text-center">
-                        <div class="font-medium text-red-600">警察</div>
-                        <div class="text-5xl font-bold text-red-500 mt-1">110</div>
+        <!-- TAB 2: 住宿 -->
+        <div id="tab-content-2" class="hidden space-y-6">
+            <div class="card p-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <div class="font-bold text-lg">Day 1: Hotel Rotterdam</div>
+                        <div class="text-xs text-gray-500">園內住宿</div>
                     </div>
-                    <div class="bg-red-50 p-5 rounded-3xl text-center">
-                        <div class="font-medium text-red-600">消防・救護</div>
-                        <div class="text-5xl font-bold text-red-500 mt-1">119</div>
-                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Rotterdam+Huis+Ten+Bosch" class="text-sky-500 text-sm">MAP</a>
                 </div>
             </div>
-            <div class="border-t pt-6">
-                <div class="text-sky-600 font-medium">租車還車點（Budget 天神店）</div>
-                <div class="mt-2 text-sm">18:00 還車</div>
-                <a href="https://www.google.com/maps/search/?api=1&amp;query=バジェット・レンタカー+天神渡辺遙店" class="text-sky-500 underline">導航還車點</a>
+            <div class="card p-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <div class="font-bold text-lg">Day 2-3: Hilton Nagasaki</div>
+                        <div class="text-xs text-gray-500">長崎站前</div>
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Hilton+Nagasaki" class="text-sky-500 text-sm">MAP</a>
+                </div>
             </div>
-            <div class="bg-amber-50 p-5 rounded-3xl text-xs">
-                香港駐福岡領事館：<br>+81-92-726-6100
+			<div class="card p-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <div class="font-bold text-lg">Day 4: ホテル桜 嬉野</div>
+                        <div class="text-xs text-gray-500">嬉野</div>
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&amp;query=ホテル桜+嬉野" class="text-sky-500 text-sm">MAP</a>
+                </div>
+            </div>
+			<div class="card p-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <div class="font-bold text-lg">Day 5: 佐賀 HAGAKUNE 2</div>
+                        <div class="text-xs text-gray-500">佐賀</div>
+                    </div>
+					<a href="https://www.google.com/maps/search/?api=1&query=HAGAKUNE+2+佐賀" target="_blank" class="text-sky-500 text-sm">MAP</a>
+                </div>
+            </div>
+            <div class="card p-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <div class="font-bold text-lg">Day 6-10: LAMP LIGHT BOOKS HOTEL</div>
+                        <div class="text-xs text-gray-500">福岡</div>
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&amp;query=LAMP+LIGHT+BOOKS+HOTEL+福岡" class="text-sky-500 text-sm">MAP</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: 預算 -->
+        <div id="tab-content-3" class="hidden">
+            <div class="card p-6">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="border-b">
+                            <th class="text-left py-3">項目</th>
+                            <th class="text-right py-3">金額 (¥)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="budget-tbody" class="divide-y"></tbody>
+                    <tfoot>
+                        <tr class="font-bold border-t">
+                            <td class="py-4">總計</td>
+                            <td id="total-budget" class="text-right py-4 text-pink-500">0 ¥</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                
+                <div class="mt-8 flex gap-3">
+                    <input id="item-name" type="text" placeholder="項目 (e.g. 租車)" class="flex-1 border border-pink-200 rounded-3xl px-5 py-3 text-sm">
+                    <input id="item-amount" type="number" placeholder="金額" class="w-28 border border-pink-200 rounded-3xl px-5 py-3 text-sm">
+                    <button onclick="addBudgetItem()" class="bg-pink-500 text-white px-8 rounded-3xl text-sm">＋</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: 緊急 -->
+        <div id="tab-content-4" class="hidden">
+            <div class="card p-8 space-y-8">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-3xl">🚨</span>
+                        <div class="font-bold text-lg">日本緊急電話</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div class="bg-red-50 p-5 rounded-3xl text-center">
+                            <div class="font-medium text-red-600">警察</div>
+                            <div class="text-5xl font-bold text-red-500 mt-1">110</div>
+                        </div>
+                        <div class="bg-red-50 p-5 rounded-3xl text-center">
+                            <div class="font-medium text-red-600">消防・救護</div>
+                            <div class="text-5xl font-bold text-red-500 mt-1">119</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border-t pt-6">
+                    <div class="text-sky-600 font-medium">租車還車點（Budget 天神店）</div>
+                    <div class="mt-2 text-sm">18:00 還車</div>
+                    <a href="https://www.google.com/maps/search/?api=1&amp;query=バジェット・レンタカー+天神渡辺遙店" class="text-sky-500 underline">導航還車點</a>
+                </div>
+                
+                <div class="bg-amber-50 p-5 rounded-3xl text-xs">
+                    香港駐福岡領事館：<br>+81-92-726-6100
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<script>
-    function switchTab(n) {
-        document.querySelectorAll('#content > div').forEach(div => div.classList.add('hidden'));
-        document.getElementById(`tab-content-${n}`).classList.remove('hidden');
-        
-        document.querySelectorAll('.flex.border-b button').forEach((btn, i) => {
-            if (i === n) btn.classList.add('nav-active');
-            else btn.classList.remove('nav-active');
-        });
-    }
+    <script>
+        function switchTab(n) {
+            document.querySelectorAll('#content > div').forEach(div => div.classList.add('hidden'));
+            document.getElementById(`tab-content-${n}`).classList.remove('hidden');
+            
+            document.querySelectorAll('#content + div button, .flex.border-b button').forEach((btn, i) => {
+                if (i === n) btn.classList.add('nav-active');
+                else btn.classList.remove('nav-active');
+            });
+        }
 
-    async function fetchWeatherForDate(lat, lon, targetDateStr, elementId) {
+        // 日期專屬天氣（顯示「當天」預報）
+        async function fetchWeatherForDate(lat, lon, targetDateStr, elementId, dayLabel) {
         try {
             const target = new Date(targetDateStr);
             const today = new Date();
@@ -713,49 +674,55 @@
             `;
         } catch(e) {
             document.getElementById(elementId).innerHTML = `<div class="text-xs text-gray-400">天氣載入失敗</div>`;
-        }
-    }
+			}
+		}
 
-    let budgetItems = [];
-    function renderBudget() {
-        const tbody = document.getElementById('budget-tbody');
-        tbody.innerHTML = '';
-        let total = 0;
-        budgetItems.forEach(item => {
-            total += parseFloat(item.amount);
-            const tr = document.createElement('tr');
-            tr.innerHTML = `<td class="py-3">${item.name}</td><td class="text-right py-3">${item.amount} ¥</td>`;
-            tbody.appendChild(tr);
-        });
-        document.getElementById('total-budget').textContent = total.toLocaleString() + ' ¥';
-    }
-    function addBudgetItem() {
-        const name = document.getElementById('item-name').value || '未命名';
-        const amount = parseFloat(document.getElementById('item-amount').value) || 0;
-        if (amount > 0) {
-            budgetItems.push({name, amount});
+        // 預算功能
+        let budgetItems = [];
+        function renderBudget() {
+            const tbody = document.getElementById('budget-tbody');
+            tbody.innerHTML = '';
+            let total = 0;
+            budgetItems.forEach(item => {
+                total += parseFloat(item.amount);
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td class="py-3">${item.name}</td><td class="text-right py-3">${item.amount} ¥</td>`;
+                tbody.appendChild(tr);
+            });
+            document.getElementById('total-budget').textContent = total.toLocaleString() + ' ¥';
+        }
+        function addBudgetItem() {
+            const name = document.getElementById('item-name').value || '未命名';
+            const amount = parseFloat(document.getElementById('item-amount').value) || 0;
+            if (amount > 0) {
+                budgetItems.push({name, amount});
+                renderBudget();
+                document.getElementById('item-name').value = '';
+                document.getElementById('item-amount').value = '';
+            }
+        }
+
+        // 初始化
+        window.onload = function() {
+            // 預設開啟航班頁
+            switchTab(0);
+            
+            // 天氣（指定日期預報）
+            fetchWeatherForDate(33.18, 129.71, '2026-03-28', 'weather-day1', '28 Mar'); //佐世保
+            fetchWeatherForDate(33.18, 129.71, '2026-03-29', 'weather-day2', '29 Mar'); //佐世保
+			fetchWeatherForDate(32.75, 129.87, '2026-03-30', 'weather-day3', '30 Mar'); //長崎
+			fetchWeatherForDate(32.75, 129.87, '2026-03-31', 'weather-day4', '31 Mar'); //嬉野
+			fetchWeatherForDate(33.25, 130.30, '2026-04-01', 'weather-day5', '01 Apr'); //佐賀
+			fetchWeatherForDate(33.59, 130.40, '2026-04-02', 'weather-day6', '02 Apr'); //福岡
+			fetchWeatherForDate(33.59, 130.40, '2026-04-03', 'weather-day7', '03 Apr');
+			fetchWeatherForDate(33.59, 130.40, '2026-04-04', 'weather-day8', '04 Apr');
+			fetchWeatherForDate(33.59, 130.40, '2026-04-05', 'weather-day9', '05 Apr');
+			fetchWeatherForDate(33.59, 130.40, '2026-04-06', 'weather-day10', '06 Apr');
+            
             renderBudget();
-            document.getElementById('item-name').value = '';
-            document.getElementById('item-amount').value = '';
-        }
-    }
-
-    window.onload = function() {
-        switchTab(0);
-        
-        fetchWeatherForDate(33.18, 129.71, '2026-03-28', 'weather-day1');
-        fetchWeatherForDate(33.18, 129.71, '2026-03-29', 'weather-day2');
-        fetchWeatherForDate(32.75, 129.87, '2026-03-30', 'weather-day3');
-        fetchWeatherForDate(32.75, 129.87, '2026-03-31', 'weather-day4');
-        fetchWeatherForDate(33.25, 130.30, '2026-04-01', 'weather-day5');
-        fetchWeatherForDate(33.59, 130.40, '2026-04-02', 'weather-day6');
-        fetchWeatherForDate(33.59, 130.40, '2026-04-03', 'weather-day7');
-        fetchWeatherForDate(33.59, 130.40, '2026-04-04', 'weather-day8');
-        fetchWeatherForDate(33.59, 130.40, '2026-04-05', 'weather-day9');
-        fetchWeatherForDate(33.59, 130.40, '2026-04-06', 'weather-day10');
-        
-        renderBudget();
-    };
-</script>
-</body>
+            
+            console.log('%c🌸 已更新：底部導航已移除 • 分類卡片 • 日期專屬天氣', 'color:#f9a8d4; font-size:12px');
+        };
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9df3a33d39298491',t:'MTc3Mzk5ODM5MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
