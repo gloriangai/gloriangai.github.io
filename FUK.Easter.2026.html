@@ -146,8 +146,24 @@
         <!-- TAB 1: 行程 -->
         <div id="tab-content-1" class="hidden space-y-10">
 
+		<!-- === Day Navigation === -->
+		<div class="day-nav">
+			<div class="flex flex-wrap gap-2 justify-center">
+				<button onclick="scrollToDay(1)" class="day-btn">D1</button>
+				<button onclick="scrollToDay(2)" class="day-btn">D2</button>
+				<button onclick="scrollToDay(3)" class="day-btn">D3</button>
+				<button onclick="scrollToDay(4)" class="day-btn">D4</button>
+				<button onclick="scrollToDay(5)" class="day-btn">D5</button>
+				<button onclick="scrollToDay(6)" class="day-btn">D6</button>
+				<button onclick="scrollToDay(7)" class="day-btn">D7</button>
+				<button onclick="scrollToDay(8)" class="day-btn">D8</button>
+				<button onclick="scrollToDay(9)" class="day-btn">D9</button>
+				<button onclick="scrollToDay(10)" class="day-btn">D10</button>
+			</div>
+		</div>
+			
             <!-- Day 1 -->
-            <div class="card p-6">
+            <div id="day1" class="card p-6">
                 <div class="flex justify-between items-start mb-5">
                     <div><div class="text-base font-bold text-pink-500">Day 1 • 28 Mar (六)</div><div class="text-sm text-gray-700">佐世保</div></div>
                     <div id="weather-day1" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
@@ -187,7 +203,7 @@
             </div>
 
             <!-- Day 2 -->
-            <div class="card p-6">
+            <div id="day2" class="card p-6">
                 <div class="flex justify-between items-start mb-5">
                     <div><div class="text-base font-bold text-pink-500">Day 2 • 29 Mar (日)</div><div class="text-sm text-gray-700">佐世保+長崎</div></div>
                     <div id="weather-day2" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
@@ -227,7 +243,7 @@
             </div>
 
             <!-- Day 3 -->
-            <div class="card p-6">
+            <div id="day3" class="card p-6">
                 <div class="flex justify-between items-start mb-5">
                     <div><div class="text-base font-bold text-pink-500">🚙 Day 3 • 30 Mar (一)</div><div class="text-sm text-gray-700">長崎</div></div>
                     <div id="weather-day3" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
@@ -270,7 +286,7 @@
             </div>
 
             <!-- Day 4 -->
-            <div class="card p-6">
+            <div id="day4" class="card p-6">
                 <div class="flex justify-between items-start mb-5">
                     <div><div class="text-base font-bold text-pink-500">🚙 Day 4 • 31 Mar (二)</div><div class="text-sm text-gray-700">九十九島 • 嬉野</div></div>
                     <div id="weather-day4" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
@@ -313,7 +329,7 @@
             </div>
 
             <!-- Day 5 -->
-            <div class="card p-6">
+            <div id="day5" class="card p-6">
                 <div class="flex justify-between items-start mb-5">
                     <div><div class="text-base font-bold text-pink-500">🚙 Day 5 • 1 Apr (三)</div><div class="text-sm text-gray-700">佐賀</div></div>
                     <div id="weather-day5" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
@@ -350,7 +366,7 @@
             </div>
 
             <!-- Day 6 -->
-            <div class="card p-6">
+            <div id="day6" class="card p-6">
                 <div class="flex justify-between items-start mb-5">
                     <div><div class="text-base font-bold text-pink-500">🚙 Day 6 • 2 Apr (四)</div><div class="text-sm text-gray-700">福岡</div></div>
                     <div id="weather-day6" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
@@ -390,7 +406,7 @@
             </div>
 
             <!-- Day 7 -->
-            <div class="card p-6">
+            <div id="day7" class="card p-6">
                 <div class="flex justify-between items-start mb-5">
                     <div><div class="text-base font-bold text-pink-500">Day 7 • 3 Apr (五)</div><div class="text-sm text-gray-700">Kidzania</div></div>
                     <div id="weather-day7" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
@@ -425,7 +441,7 @@
             </div>
 
             <!-- Day 8 -->
-            <div class="card p-6">
+            <div id="day8" class="card p-6">
                 <div class="flex justify-between items-start mb-5">
                     <div><div class="text-base font-bold text-pink-500">Day 8 • 4 Apr (六)</div><div class="text-sm text-gray-700">海の中道</div></div>
                     <div id="weather-day8" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
@@ -476,7 +492,7 @@
             </div>
 
             <!-- Day 9 -->
-            <div class="card p-6">
+            <div id="day9" class="card p-6">
                 <div class="flex justify-between items-start mb-5">
                     <div><div class="text-base font-bold text-pink-500">Day 9 • 5 Apr (日)</div><div class="text-sm text-gray-700">天神</div></div>
                     <div id="weather-day9" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
@@ -515,7 +531,7 @@
             </div>
 
             <!-- Day 10 -->
-            <div class="card p-6">
+            <div id="day10" class="card p-6">
                 <div class="flex justify-between items-start mb-5">
                     <div><div class="text-base font-bold text-pink-500">Day 10 • 6 Apr (一)</div><div class="text-sm text-gray-700">回程</div></div>
                     <div id="weather-day10" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
@@ -640,6 +656,13 @@
     </div>
 
     <script>
+		// === 新增 Day Navigation 跳轉功能 ===
+	    function scrollToDay(n) {
+	        const element = document.getElementById('day' + n);
+	        if (element) {
+	            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	        }
+	    }
         function switchTab(n) {
             document.querySelectorAll('#content > div').forEach(div => div.classList.add('hidden'));
             document.getElementById(`tab-content-${n}`).classList.remove('hidden');
