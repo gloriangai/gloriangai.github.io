@@ -170,25 +170,25 @@
         <div id="tab-content-1" class="hidden space-y-10">
 
 		<!-- === Day Navigation === -->
-		<div class="day-nav">
-			<div class="flex flex-wrap gap-2 justify-center">
-				<button onclick="scrollToDay(1)" class="day-btn">D1</button>
-				<button onclick="scrollToDay(2)" class="day-btn">D2</button>
-				<button onclick="scrollToDay(3)" class="day-btn">D3</button>
-				<button onclick="scrollToDay(4)" class="day-btn">D4</button>
-				<button onclick="scrollToDay(5)" class="day-btn">D5</button>
-				<button onclick="scrollToDay(6)" class="day-btn">D6</button>
-				<button onclick="scrollToDay(7)" class="day-btn">D7</button>
-				<button onclick="scrollToDay(8)" class="day-btn">D8</button>
-				<button onclick="scrollToDay(9)" class="day-btn">D9</button>
-				<button onclick="scrollToDay(10)" class="day-btn">D10</button>
-			</div>
+		<div class="day-nav sticky top-[140px] z-30 bg-white border-b border-pink-200 py-3 px-4">
+		    <div class="flex flex-wrap gap-2 justify-center">
+		        <button onclick="scrollToDay(1)" class="day-btn">D1</button>
+		        <button onclick="scrollToDay(2)" class="day-btn">D2</button>
+		        <button onclick="scrollToDay(3)" class="day-btn">D3</button>
+		        <button onclick="scrollToDay(4)" class="day-btn">D4</button>
+		        <button onclick="scrollToDay(5)" class="day-btn">D5</button>
+		        <button onclick="scrollToDay(6)" class="day-btn">D6</button>
+		        <button onclick="scrollToDay(7)" class="day-btn">D7</button>
+		        <button onclick="scrollToDay(8)" class="day-btn">D8</button>
+		        <button onclick="scrollToDay(9)" class="day-btn">D9</button>
+		        <button onclick="scrollToDay(10)" class="day-btn">D10</button>
+		    </div>
 		</div>
 			
             <!-- Day 1 -->
-			<div class="card p-6">
+			<div class="card p-6"><div id="anchor-day1"></div>
                 <div class="flex justify-between items-start mb-5">
-                    <div id="anchor-day1"><div class="text-base font-bold text-pink-500">Day 1 • 28 Mar (六)</div><div class="text-sm text-gray-700">佐世保</div></div>
+                    <div><div class="text-base font-bold text-pink-500">Day 1 • 28 Mar (六)</div><div class="text-sm text-gray-700">佐世保</div></div>
                     <div id="weather-day1" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
                 </div>
                 <!-- 景點卡 -->
@@ -226,8 +226,7 @@
             </div>
 
             <!-- Day 2 -->
-			<div id="anchor-day2"> </div>
-            <div id="day2" class="card p-6">
+			<div id="day2" class="card p-6"><div id="anchor-day2"> </div>
                 <div class="flex justify-between items-start mb-5">
                     <div><div class="text-base font-bold text-pink-500">Day 2 • 29 Mar (日)</div><div class="text-sm text-gray-700">佐世保+長崎</div></div>
                     <div id="weather-day2" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
