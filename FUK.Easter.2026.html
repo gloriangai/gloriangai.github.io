@@ -683,7 +683,7 @@
 	    function scrollToDay(n) {
 	        const element = document.getElementById('anchor-day' + n);
 	        if (element) {
-	            const headerHeight = 140;   // 你的 header + tab nav + day-nav 總高度
+	            const headerHeight = 160;   // 你的 header + tab nav + day-nav 總高度
 	            const elementPosition = element.getBoundingClientRect().top + window.scrollY;
 	            window.scrollTo({
 	                top: elementPosition - headerHeight,
