@@ -186,7 +186,7 @@
 		</div>
 			
             <!-- Day 1 -->
-			<div id="day1" class="card p-6"><div id="anchor-day1"></div>
+			<div class="card p-6"><div id="anchor-day1" style="margin-top: -20px; padding-top: 20px;"></div>
                 <div class="flex justify-between items-start mb-5">
                     <div><div class="text-base font-bold text-pink-500">Day 1 • 28 Mar (六)</div><div class="text-sm text-gray-700">佐世保</div></div>
                     <div id="weather-day1" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
@@ -226,7 +226,7 @@
             </div>
 
             <!-- Day 2 -->
-			<div id="day2" class="card p-6"><div id="anchor-day2"> </div>
+			<div id="day2" class="card p-6"><div id="anchor-day2" style="margin-top: -20px; padding-top: 20px;"></div>
                 <div class="flex justify-between items-start mb-5">
                     <div><div class="text-base font-bold text-pink-500">Day 2 • 29 Mar (日)</div><div class="text-sm text-gray-700">佐世保+長崎</div></div>
                     <div id="weather-day2" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
@@ -683,7 +683,12 @@
 	    function scrollToDay(n) {
 	        const element = document.getElementById('anchor-day' + n);
 	        if (element) {
-	            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	            const headerHeight = 140;   // 你的 header + tab nav + day-nav 總高度
+	            const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+	            window.scrollTo({
+	                top: elementPosition - headerHeight,
+	                behavior: 'smooth'
+	            });
 	        }
 	    }
         function switchTab(n) {
