@@ -163,7 +163,7 @@
 		</div>
 			
             <!-- Day 1 -->
-            <div id="day1" class="card p-6">
+            <div class="card p-6"><div id="anchor-day1"></div>
                 <div class="flex justify-between items-start mb-5">
                     <div><div class="text-base font-bold text-pink-500">Day 1 • 28 Mar (六)</div><div class="text-sm text-gray-700">佐世保</div></div>
                     <div id="weather-day1" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
@@ -203,7 +203,7 @@
             </div>
 
             <!-- Day 2 -->
-            <div id="day2" class="card p-6">
+            <div id="day2" class="card p-6"><div id="anchor-day2"></div>
                 <div class="flex justify-between items-start mb-5">
                     <div><div class="text-base font-bold text-pink-500">Day 2 • 29 Mar (日)</div><div class="text-sm text-gray-700">佐世保+長崎</div></div>
                     <div id="weather-day2" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
@@ -658,7 +658,7 @@
     <script>
 		// === 新增 Day Navigation 跳轉功能 ===
 	    function scrollToDay(n) {
-	        const element = document.getElementById('day' + n);
+	        const element = document.getElementById('anchor-day' + n);
 	        if (element) {
 	            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	        }
