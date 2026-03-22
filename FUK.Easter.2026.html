@@ -42,12 +42,11 @@
 
 		.day-nav {
             position: sticky;
-            top: 140px;
+            top: 10px;
             z-index: 30;
-            background: white;
             border-bottom: 1px solid #fce7f3;
-            padding: 12px 16px;
-            margin-bottom: 16px;
+            padding: 0px 0px;
+            margin-bottom: 0px;
         }
         .day-btn {
             font-size: 11px;
@@ -55,7 +54,7 @@
             border-radius: 9999px;
             background: #fce7f3;
             color: #db2777;
-            font-weight: 600;
+            font-weight: 400;
             transition: all 0.2s;
         }
         .day-btn:hover, .day-btn.active {
@@ -186,7 +185,8 @@
 		</div>
 			
             <!-- Day 1 -->
-            <div class="card p-6"><div id="anchor-day1"></div>
+			<div id="anchor-day1"> </div>
+            <div class="card p-6">
                 <div class="flex justify-between items-start mb-5">
                     <div><div class="text-base font-bold text-pink-500">Day 1 • 28 Mar (六)</div><div class="text-sm text-gray-700">佐世保</div></div>
                     <div id="weather-day1" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
@@ -226,7 +226,8 @@
             </div>
 
             <!-- Day 2 -->
-            <div id="day2" class="card p-6"><div id="anchor-day2"></div>
+			<div id="anchor-day2"> </div>
+            <div id="day2" class="card p-6">
                 <div class="flex justify-between items-start mb-5">
                     <div><div class="text-base font-bold text-pink-500">Day 2 • 29 Mar (日)</div><div class="text-sm text-gray-700">佐世保+長崎</div></div>
                     <div id="weather-day2" class="text-right min-w-[90px]"><div class="text-4xl weather-icon">⏳</div><div class="text-xs text-gray-500">loading...</div></div>
