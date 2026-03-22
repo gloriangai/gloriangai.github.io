@@ -170,7 +170,7 @@
 		<!-- === Day Navigation === -->
 		<div class="day-nav sticky top-[140px] z-30 py-3 px-4">
 		    <div class="flex flex-wrap gap-2 justify-center">
-		        <button onclick="scrollToDay(1)" class="day-btn">Dy 1</button>
+		        <button onclick="scrollToDay(1)" class="day-btn">Day 1</button>
 		        <button onclick="scrollToDay(2)" class="day-btn">Day 2</button>
 		        <button onclick="scrollToDay(3)" class="day-btn">Day 3</button>
 		        <button onclick="scrollToDay(4)" class="day-btn">Day 4</button>
@@ -681,10 +681,10 @@
 	    function scrollToDay(n) {
 	        const element = document.getElementById('anchor-day' + n);
 	        if (element) {
-	            const headerHeight = 160;   // 你的 header + tab nav + day-nav 總高度
+	            const headerHeight = 200;   // 你的 header + tab nav + day-nav 總高度
 	            const elementPosition = element.getBoundingClientRect().top + window.scrollY;
 	            window.scrollTo({
-	                top: elementPosition + headerHeight,
+	                top: elementPosition - headerHeight,
 	                behavior: 'smooth'
 	            });
 	        }
