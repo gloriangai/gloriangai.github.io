@@ -740,8 +740,9 @@
 		        const code = data.daily.weathercode[offset];
 		        let emoji = '⛅';
 		        if ([0,1,2,3].includes(code)) emoji = '☀️';
-		        else if ([45,48].includes(code)) emoji = '🌫️';
-		        else if (code >= 51) emoji = '🌧️';
+		        else if (rainProb >= 60) emoji = '🌧️';      // 降雨機率 >=60% 才用雨
+				else if (rainProb >= 30) emoji = '☁️';      // 30-59% 用陰天
+				else emoji = '⛅';
 		
 		        const result = {
 		            emoji: emoji,
@@ -803,7 +804,9 @@
                 let emoji = '⛅';
                 if ([0,1,2,3].includes(code)) emoji = '☀️';
                 else if ([45,48].includes(code)) emoji = '🌫️';
-                else if (code >= 51) emoji = '🌧️';
+                else if (rainProb >= 60) emoji = '🌧️';      // 降雨機率 >=60% 才用雨
+				else if (rainProb >= 30) emoji = '☁️';      // 30-59% 用陰天
+				else emoji = '⛅';
                 
                 const minTemp = Math.round(data.daily.temperature_2m_min[offset]);
                 const maxTemp = Math.round(data.daily.temperature_2m_max[offset]);
