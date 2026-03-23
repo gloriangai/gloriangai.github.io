@@ -725,102 +725,101 @@
 		let weatherCache = {};
 
 		async function getWeatherData(lat, lon, targetDateStr) {
-		    const key = `${lat}-${lon}-${targetDateStr}`;
-		    if (weatherCache[key]) return weatherCache[key];
+	        const key = `${lat}-${lon}-${targetDateStr}`;
+	        if (weatherCache[key]) return weatherCache[key];
+	
+	        try {
+	            const target = new Date(targetDateStr);
+	            const today = new Date(); today.setHours(0,0,0,0);
+	            const offset = Math.floor((target - today) / 86400000);
+	
+	            const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FTokyo&forecast_days=${offset + 3}`;
+	            const res = await fetch(url);
+	            const data = await res.json();
+	
+	            const code = data.daily.weathercode[offset];
+	            const minTemp = Math.round(data.daily.temperature_2m_min[offset]);
+	            const maxTemp = Math.round(data.daily.temperature_2m_max[offset]);
+	            const rainProb = data.daily.precipitation_probability_max[offset] || 0;
+	
+	            // === 正確順序：先取雨率，再決定 emoji ===
+	            let emoji = '⛅';
+	            if ([0,1,2,3].includes(code)) emoji = '☀️';
+	            else if ([45,48].includes(code)) emoji = '🌫️';
+	            else if (rainProb >= 60) emoji = '🌧️';
+	            else if (rainProb >= 30) emoji = '☁️';
+	            else emoji = '⛅';
+	
+	            const result = { emoji, minTemp, maxTemp, rainProb };
+	            weatherCache[key] = result;
+	            return result;
+	        } catch(e) {
+	            return {emoji: '❓', minTemp: '-', maxTemp: '-', rainProb: 0};
+	        }
+	    }
 		
-		    try {
-		        const target = new Date(targetDateStr);
-		        const today = new Date(); today.setHours(0,0,0,0);
-		        const offset = Math.floor((target - today) / 86400000);
-		
-		        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FTokyo&forecast_days=${offset + 3}`;
-		        const res = await fetch(url);
-		        const data = await res.json();
-		
-		        const code = data.daily.weathercode[offset];
-		        let emoji = '⛅';
-		        if ([0,1,2,3].includes(code)) emoji = '☀️';
-		        else if (rainProb >= 60) emoji = '🌧️';      // 降雨機率 >=60% 才用雨
-				else if (rainProb >= 30) emoji = '☁️';      // 30-59% 用陰天
-				else emoji = '⛅';
-		
-		        const result = {
-		            emoji: emoji,
-		            minTemp: Math.round(data.daily.temperature_2m_min[offset]),
-		            maxTemp: Math.round(data.daily.temperature_2m_max[offset]),
-		            rainProb: data.daily.precipitation_probability_max[offset] || 0
-		        };
-		        weatherCache[key] = result;
-		        return result;
-		    } catch(e) {
-		        return {emoji: '❓', minTemp: '-', maxTemp: '-', rainProb: 0};
-		    }
-		}
-		
-		async function renderWeatherOverview() {
-		    const tbody = document.getElementById('weather-tbody');
-		    tbody.innerHTML = '';
-		
-		    const days = [
-		        {date: '28/3', region: '佐世保', lat: 33.18, lon: 129.71, dateStr: '2026-03-28'},
-		        {date: '29/3', region: '佐世保', lat: 33.18, lon: 129.71, dateStr: '2026-03-29'},
-		        {date: '30/3', region: '長崎',   lat: 32.75, lon: 129.87, dateStr: '2026-03-30'},
-		        {date: '31/3', region: '嬉野',   lat: 33.12, lon: 129.98, dateStr: '2026-03-31'},
-		        {date: '01/4', region: '佐賀',   lat: 33.25, lon: 130.30, dateStr: '2026-04-01'},
-		        {date: '02/4', region: '福岡',   lat: 33.59, lon: 130.40, dateStr: '2026-04-02'},
-		        {date: '03/4', region: '福岡',   lat: 33.59, lon: 130.40, dateStr: '2026-04-03'},
-		        {date: '04/4', region: '福岡',   lat: 33.59, lon: 130.40, dateStr: '2026-04-04'},
-		        {date: '05/4', region: '福岡',   lat: 33.59, lon: 130.40, dateStr: '2026-04-05'},
-		        {date: '06/4', region: '福岡',   lat: 33.59, lon: 130.40, dateStr: '2026-04-06'}
-		    ];
-		
-		    for (const day of days) {
-		        const w = await getWeatherData(day.lat, day.lon, day.dateStr);
-		        const tr = document.createElement('tr');
-		        tr.innerHTML = `
-		            <td class="p-3 border-t">${day.date}</td>
-		            <td class="p-3 border-t">${day.region}</td>
-		            <td class="p-3 border-t text-3xl text-center">${w.emoji}</td>
-		            <td class="p-3 border-t text-center">${w.minTemp}–${w.maxTemp}°C</td>
-		            <td class="p-3 border-t text-center text-blue-600">💧${w.rainProb}%</td>
-		        `;
-		        tbody.appendChild(tr);
-		    }
-		}
+		async function fetchWeatherForDate(lat, lon, targetDateStr, elementId) {
+	        try {
+	            const target = new Date(targetDateStr);
+	            const today = new Date(); today.setHours(0,0,0,0);
+	            const offset = Math.floor((target - today) / 86400000);
+	
+	            const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FTokyo&forecast_days=${offset + 3}`;
+	            const res = await fetch(url);
+	            const data = await res.json();
+	
+	            const code = data.daily.weathercode[offset];
+	            const minTemp = Math.round(data.daily.temperature_2m_min[offset]);
+	            const maxTemp = Math.round(data.daily.temperature_2m_max[offset]);
+	            const rainProb = data.daily.precipitation_probability_max[offset] || 0;
+	
+	            let emoji = '⛅';
+	            if ([0,1,2,3].includes(code)) emoji = '☀️';
+	            else if ([45,48].includes(code)) emoji = '🌫️';
+	            else if (rainProb >= 60) emoji = '🌧️';
+	            else if (rainProb >= 30) emoji = '☁️';
+	            else emoji = '⛅';
+	
+	            document.getElementById(elementId).innerHTML = `
+	                <div class="text-4xl weather-icon">${emoji}</div>
+	                <div class="text-xs font-medium">${minTemp} - ${maxTemp}°C</div>
+	                <div class="text-xs text-blue-600">💧${rainProb}%</div>
+	            `;
+	        } catch(e) {
+	            document.getElementById(elementId).innerHTML = `<div class="text-xs text-gray-400">天氣載入失敗</div>`;
+	        }
+	    }
 
-		
-        async function fetchWeatherForDate(lat, lon, targetDateStr, elementId) {
-            try {
-                const target = new Date(targetDateStr);
-                const today = new Date();
-                today.setHours(0,0,0,0);
-                const offset = Math.floor((target - today) / 86400000);
-                
-                const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FTokyo&forecast_days=${offset + 3}`;
-                const res = await fetch(url);
-                const data = await res.json();
-                
-                const code = data.daily.weathercode[offset];
-                let emoji = '⛅';
-                if ([0,1,2,3].includes(code)) emoji = '☀️';
-                else if ([45,48].includes(code)) emoji = '🌫️';
-                else if (rainProb >= 60) emoji = '🌧️';      // 降雨機率 >=60% 才用雨
-				else if (rainProb >= 30) emoji = '☁️';      // 30-59% 用陰天
-				else emoji = '⛅';
-                
-                const minTemp = Math.round(data.daily.temperature_2m_min[offset]);
-                const maxTemp = Math.round(data.daily.temperature_2m_max[offset]);
-                const rainProb = data.daily.precipitation_probability_max[offset] || 0;
-                
-                document.getElementById(elementId).innerHTML = `
-                    <div class="text-4xl weather-icon">${emoji}</div>
-                    <div class="text-xs font-medium">${minTemp} - ${maxTemp}°C</div>
-                    <div class="text-xs text-blue-600">💧${rainProb}%</div>
-                `;
-            } catch(e) {
-                document.getElementById(elementId).innerHTML = `<div class="text-xs text-gray-400">天氣載入失敗</div>`;
-            }
-        }
+		async function renderWeatherOverview() {
+	        const tbody = document.getElementById('weather-tbody');
+	        tbody.innerHTML = '';
+	
+	        const days = [
+	            {date: '28/3', region: '佐世保', lat: 33.18, lon: 129.71, dateStr: '2026-03-28'},
+	            {date: '29/3', region: '佐世保', lat: 33.18, lon: 129.71, dateStr: '2026-03-29'},
+	            {date: '30/3', region: '長崎',   lat: 32.75, lon: 129.87, dateStr: '2026-03-30'},
+	            {date: '31/3', region: '嬉野',   lat: 33.12, lon: 129.98, dateStr: '2026-03-31'},
+	            {date: '01/4', region: '佐賀',   lat: 33.25, lon: 130.30, dateStr: '2026-04-01'},
+	            {date: '02/4', region: '福岡',   lat: 33.59, lon: 130.40, dateStr: '2026-04-02'},
+	            {date: '03/4', region: '福岡',   lat: 33.59, lon: 130.40, dateStr: '2026-04-03'},
+	            {date: '04/4', region: '福岡',   lat: 33.59, lon: 130.40, dateStr: '2026-04-04'},
+	            {date: '05/4', region: '福岡',   lat: 33.59, lon: 130.40, dateStr: '2026-04-05'},
+	            {date: '06/4', region: '福岡',   lat: 33.59, lon: 130.40, dateStr: '2026-04-06'}
+	        ];
+	
+	        for (const day of days) {
+	            const w = await getWeatherData(day.lat, day.lon, day.dateStr);
+	            const tr = document.createElement('tr');
+	            tr.innerHTML = `
+	                <td class="p-3 border-t">${day.date}</td>
+	                <td class="p-3 border-t">${day.region}</td>
+	                <td class="p-3 border-t text-3xl text-center">${w.emoji}</td>
+	                <td class="p-3 border-t text-center">${w.minTemp}–${w.maxTemp}°C</td>
+	                <td class="p-3 border-t text-center text-blue-600">💧${w.rainProb}%</td>
+	            `;
+	            tbody.appendChild(tr);
+	        }
+	    }
 
         let budgetItems = [];
         function renderBudget() {
