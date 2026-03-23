@@ -57,7 +57,7 @@
             font-weight: 400;
             transition: all 0.2s;
 			opacity: 0.7;
-			min-width: 40px;
+			min-width: 42px;
         }
         .day-btn:hover, .day-btn.active {
             background: #f9a8d4;
@@ -171,8 +171,8 @@
         <div id="tab-content-1" class="hidden space-y-10">
 
 		<!-- === Day Navigation === -->
-		<div class="day-nav sticky top-[140px] z-30 py-3 px-4">
-		    <div class="flex flex-wrap gap-4 justify-center">
+		<div class="day-nav sticky top-[140px] z-30 py-3 px-0">
+		    <div class="flex flex-wrap gap-6 justify-center">
 		        <button onclick="scrollToDay(1)" class="day-btn">Day 1</button>
 		        <button onclick="scrollToDay(2)" class="day-btn">Day 2</button>
 		        <button onclick="scrollToDay(3)" class="day-btn">Day 3</button>
@@ -684,7 +684,7 @@
 	    function scrollToDay(n) {
 	        const element = document.getElementById('anchor-day' + n);
 	        if (element) {
-	            const headerHeight = 260;   // 你的 header + tab nav + day-nav 總高度
+	            const headerHeight = 250;   // 你的 header + tab nav + day-nav 總高度
 	            const elementPosition = element.getBoundingClientRect().top + window.scrollY;
 	            window.scrollTo({
 	                top: elementPosition - headerHeight,
