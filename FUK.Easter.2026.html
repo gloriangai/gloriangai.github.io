@@ -572,6 +572,37 @@
 
         <!-- TAB 2: 住宿 -->
         <div id="tab-content-2" class="hidden space-y-6">
+			<div class="mb-8">
+			    <h2 class="text-xl font-bold mb-4 flex items-center gap-3"><i class="fas fa-cloud-sun text-sky-500"></i> 全程天氣總覽</h2>
+			    
+			    <!-- 第一表 (28/3 ~ 01/4) -->
+			    <table class="w-full text-xs border border-pink-200 rounded-3xl overflow-hidden mb-6">
+			        <thead class="bg-pink-50">
+			            <tr>
+			                <th class="p-3 text-left">日期</th>
+			                <th class="p-3 text-left">地區</th>
+			                <th class="p-3 text-center">天氣</th>
+			                <th class="p-3 text-center">溫度</th>
+			                <th class="p-3 text-center">降雨率</th>
+			            </tr>
+			        </thead>
+			        <tbody id="weather-tbody1"></tbody>
+			    </table>
+			
+			    <!-- 第二表 (02/4 ~ 06/4) -->
+			    <table class="w-full text-xs border border-pink-200 rounded-3xl overflow-hidden">
+			        <thead class="bg-pink-50">
+			            <tr>
+			                <th class="p-3 text-left">日期</th>
+			                <th class="p-3 text-left">地區</th>
+			                <th class="p-3 text-center">天氣</th>
+			                <th class="p-3 text-center">溫度</th>
+			                <th class="p-3 text-center">降雨率</th>
+			            </tr>
+			        </thead>
+			        <tbody id="weather-tbody2"></tbody>
+			    </table>
+			</div>
             <div class="card p-6">
                 <div class="flex justify-between items-center">
                     <div>
@@ -700,8 +731,97 @@
                 if (i === n) btn.classList.add('nav-active');
                 else btn.classList.remove('nav-active');
             });
+			// === 關鍵：切換到住宿頁時自動載入天氣總覽 ===
+	        if (n === 2) {
+	            renderWeatherOverview();
+	        }
         }
 
+		let weatherCache = {};
+
+		async function getWeatherData(lat, lon, targetDateStr) {
+		    const key = `${lat}-${lon}-${targetDateStr}`;
+		    if (weatherCache[key]) return weatherCache[key];
+		
+		    try {
+		        const target = new Date(targetDateStr);
+		        const today = new Date(); today.setHours(0,0,0,0);
+		        const offset = Math.floor((target - today) / 86400000);
+		
+		        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FTokyo&forecast_days=${offset + 3}`;
+		        const res = await fetch(url);
+		        const data = await res.json();
+		
+		        const code = data.daily.weathercode[offset];
+		        let emoji = '⛅';
+		        if ([0,1,2,3].includes(code)) emoji = '☀️';
+		        else if ([45,48].includes(code)) emoji = '🌫️';
+		        else if (code >= 51) emoji = '🌧️';
+		
+		        const result = {
+		            emoji: emoji,
+		            minTemp: Math.round(data.daily.temperature_2m_min[offset]),
+		            maxTemp: Math.round(data.daily.temperature_2m_max[offset]),
+		            rainProb: data.daily.precipitation_probability_max[offset] || 0
+		        };
+		        weatherCache[key] = result;
+		        return result;
+		    } catch(e) {
+		        return {emoji: '❓', minTemp: '-', maxTemp: '-', rainProb: 0};
+		    }
+		}
+		
+		async function renderWeatherOverview() {
+		    const tbody1 = document.getElementById('weather-tbody1');
+		    const tbody2 = document.getElementById('weather-tbody2');
+		    tbody1.innerHTML = ''; tbody2.innerHTML = '';
+		
+		    // 第一表 (28/3 ~ 01/4)
+		    const part1 = [
+		        {label:'28/3', region:'佐世保', lat:33.18, lon:129.71, dateStr:'2026-03-28'},
+		        {label:'29/3', region:'佐世保', lat:33.18, lon:129.71, dateStr:'2026-03-29'},
+		        {label:'30/3', region:'長崎',   lat:32.75, lon:129.87, dateStr:'2026-03-30'},
+		        {label:'31/3', region:'嬉野',   lat:33.12, lon:129.98, dateStr:'2026-03-31'},
+		        {label:'01/4', region:'佐賀',   lat:33.25, lon:130.30, dateStr:'2026-04-01'}
+		    ];
+		
+		    // 第二表 (02/4 ~ 06/4)
+		    const part2 = [
+		        {label:'02/4', region:'福岡', lat:33.59, lon:130.40, dateStr:'2026-04-02'},
+		        {label:'03/4', region:'福岡', lat:33.59, lon:130.40, dateStr:'2026-04-03'},
+		        {label:'04/4', region:'福岡', lat:33.59, lon:130.40, dateStr:'2026-04-04'},
+		        {label:'05/4', region:'福岡', lat:33.59, lon:130.40, dateStr:'2026-04-05'},
+		        {label:'06/4', region:'福岡', lat:33.59, lon:130.40, dateStr:'2026-04-06'}
+		    ];
+		
+		    for (const d of part1) {
+		        const w = await getWeatherData(d.lat, d.lon, d.dateStr);
+		        const tr = document.createElement('tr');
+		        tr.innerHTML = `
+		            <td class="p-3 border-t">${d.label}</td>
+		            <td class="p-3 border-t">${d.region}</td>
+		            <td class="p-3 border-t text-3xl text-center">${w.emoji}</td>
+		            <td class="p-3 border-t text-center">${w.minTemp} - ${w.maxTemp}°C</td>
+		            <td class="p-3 border-t text-center text-blue-600">💧${w.rainProb}%</td>
+		        `;
+		        tbody1.appendChild(tr);
+		    }
+		
+		    for (const d of part2) {
+		        const w = await getWeatherData(d.lat, d.lon, d.dateStr);
+		        const tr = document.createElement('tr');
+		        tr.innerHTML = `
+		            <td class="p-3 border-t">${d.label}</td>
+		            <td class="p-3 border-t">${d.region}</td>
+		            <td class="p-3 border-t text-3xl text-center">${w.emoji}</td>
+		            <td class="p-3 border-t text-center">${w.minTemp} - ${w.maxTemp}°C</td>
+		            <td class="p-3 border-t text-center text-blue-600">💧${w.rainProb}%</td>
+		        `;
+		        tbody2.appendChild(tr);
+		    }
+		}
+
+		
         async function fetchWeatherForDate(lat, lon, targetDateStr, elementId) {
             try {
                 const target = new Date(targetDateStr);
