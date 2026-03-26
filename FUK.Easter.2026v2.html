@@ -114,7 +114,7 @@
     <!-- TAB NAV -->
     <div class="flex border-b border-pink-200 bg-white sticky top-[88px] z-40">
         <button onclick="switchTab(0)" id="tab0" class="nav-active flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
-            <i class="fas fa-plane"></i> 基本
+            <i class="fas fa-suitcase-rolling"></i> 基本
         </button>
         <button onclick="switchTab(1)" id="tab1" class="flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
             <i class="fas fa-calendar-alt"></i> 行程
@@ -135,7 +135,9 @@
 
         <!-- TAB 0: 航班 -->
         <div id="tab-content-0" class="space-y-6">
-            <div class="card p-8">
+            <div class="mb-8">
+                <h2 class="text-xl font-bold mb-4 flex items-center gap-3"><i class="fas fa-plane text-sky-500"></i> 航班資訊</h2></div>
+				<div class="card p-8">
                 <h2 class="text-base font-bold mb-6 flex items-center gap-3"><i class="fas fa-plane-departure text-sky-500"></i> 出發航班 28/03/2026</h2>
                 <div class="grid grid-cols-2 gap-6">
                     <div>
@@ -168,7 +170,7 @@
 
             <!-- 全程天氣總覽 -->
             <div class="mb-8">
-                <h2 class="text-xl font-bold mb-4 flex items-center gap-3"><i class="fas fa-cloud-sun text-sky-500"></i> 全程天氣總覽</h2>
+                <h2 class="text-xl font-bold mb-4 flex items-center gap-3"><i class="fas fa-cloud-sun text-sky-500"></i> 天氣預報</h2>
                 <table class="w-full text-xs border border-pink-200 rounded-3xl overflow-hidden">
                     <thead class="bg-pink-50">
                         <tr>
@@ -185,7 +187,7 @@
 
 			<!-- 全程住宿總覽 -->
             <div class="mb-8">
-                <h2 class="text-xl font-bold mb-4 flex items-center gap-3"><i class="fas fa-hotel text-sky-500"></i> 全程住宿總覽</h2>
+                <h2 class="text-xl font-bold mb-4 flex items-center gap-3"><i class="fas fa-hotel text-sky-500"></i> 住宿</h2>
 				<div class="card p-6">
                 <div class="flex justify-between items-center">
                     <div>
