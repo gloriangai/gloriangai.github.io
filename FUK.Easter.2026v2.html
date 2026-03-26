@@ -114,7 +114,7 @@
     <!-- TAB NAV -->
     <div class="flex border-b border-pink-200 bg-white sticky top-[88px] z-40">
         <button onclick="switchTab(0)" id="tab0" class="nav-active flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
-            <i class="fas fa-plane"></i> 航班
+            <i class="fas fa-plane"></i> 基本
         </button>
         <button onclick="switchTab(1)" id="tab1" class="flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
             <i class="fas fa-calendar-alt"></i> 行程
@@ -136,7 +136,7 @@
         <!-- TAB 0: 航班 -->
         <div id="tab-content-0" class="space-y-6">
             <div class="card p-8">
-                <h2 class="text-xl font-bold mb-6 flex items-center gap-3"><i class="fas fa-plane-departure text-sky-500"></i> 出發航班 28/03/2026</h2>
+                <h2 class="text-base font-bold mb-6 flex items-center gap-3"><i class="fas fa-plane-departure text-sky-500"></i> 出發航班 28/03/2026</h2>
                 <div class="grid grid-cols-2 gap-6">
                     <div>
                         <div class="text-xs text-gray-500">出發地</div>
@@ -151,7 +151,7 @@
                 </div>
             </div>
             <div class="card p-8 bg-gradient-to-br from-pink-50 to-sky-50">
-                <h2 class="text-xl font-bold mb-6 flex items-center gap-3"><i class="fas fa-plane-arrival text-sky-500"></i> 回程航班 06/04/2026</h2>
+                <h2 class="text-base font-bold mb-6 flex items-center gap-3"><i class="fas fa-plane-arrival text-sky-500"></i> 回程航班 06/04/2026</h2>
                 <div class="grid grid-cols-2 gap-6">
                     <div>
                         <div class="text-xs text-gray-500">出發地</div>
@@ -166,7 +166,7 @@
                 </div>
             </div>
 
-            <!-- 全程天氣總覽（已搬到航班 TAB 底部） -->
+            <!-- 全程天氣總覽 -->
             <div class="mb-8">
                 <h2 class="text-xl font-bold mb-4 flex items-center gap-3"><i class="fas fa-cloud-sun text-sky-500"></i> 全程天氣總覽</h2>
                 <table class="w-full text-xs border border-pink-200 rounded-3xl overflow-hidden">
@@ -183,10 +183,13 @@
                 </table>
             </div>
 
-			<div class="card p-6">
+			<!-- 全程住宿總覽 -->
+            <div class="mb-8">
+                <h2 class="text-xl font-bold mb-4 flex items-center gap-3"><i class="fas fa-hotel text-sky-500"></i> 全程住宿總覽</h2>
+				<div class="card p-6">
                 <div class="flex justify-between items-center">
                     <div>
-                        <div class="font-bold text-lg">Day 1: Hotel Rotterdam</div>
+                        <div class="font-bold text-sm">Day 1: Hotel Rotterdam</div>
                         <div class="text-xs text-gray-500">園內住宿</div>
                     </div>
                     <a href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Rotterdam+Huis+Ten+Bosch" class="text-sky-500 text-sm">MAP</a>
@@ -195,7 +198,7 @@
             <div class="card p-6">
                 <div class="flex justify-between items-center">
                     <div>
-                        <div class="font-bold text-lg">Day 2-3: Hilton Nagasaki</div>
+                        <div class="font-bold text-sm">Day 2-3: Hilton Nagasaki</div>
                         <div class="text-xs text-gray-500">長崎站前</div>
                     </div>
                     <a href="https://www.google.com/maps/search/?api=1&amp;query=Hilton+Nagasaki" class="text-sky-500 text-sm">MAP</a>
@@ -204,7 +207,7 @@
 			<div class="card p-6">
                 <div class="flex justify-between items-center">
                     <div>
-                        <div class="font-bold text-lg">Day 4: Nagasaki Marriott Hotel</div>
+                        <div class="font-bold text-sm">Day 4: Nagasaki Marriott Hotel</div>
                         <div class="text-xs text-gray-500">長崎市中心</div>
                     </div>
                     <a href="https://www.google.com/maps/search/?api=1&amp;query=Nagasaki+Marriott+Hotel" class="text-sky-500 text-sm">MAP</a>
@@ -213,7 +216,7 @@
 			<div class="card p-6">
                 <div class="flex justify-between items-center">
                     <div>
-                        <div class="font-bold text-lg">Day 5: 佐賀 HAGAKUNE 2</div>
+                        <div class="font-bold text-sm">Day 5: 佐賀 HAGAKUNE 2</div>
                         <div class="text-xs text-gray-500">佐賀</div>
                     </div>
 					<a href="https://www.google.com/maps/search/?api=1&query=HAGAKUNE+2+佐賀" target="_blank" class="text-sky-500 text-sm">MAP</a>
@@ -222,12 +225,13 @@
             <div class="card p-6">
                 <div class="flex justify-between items-center">
                     <div>
-                        <div class="font-bold text-lg">Day 6-10: LAMP LIGHT BOOKS HOTEL</div>
+                        <div class="font-bold text-sm">Day 6-10: LAMP LIGHT BOOKS HOTEL</div>
                         <div class="text-xs text-gray-500">福岡</div>
                     </div>
                     <a href="https://www.google.com/maps/search/?api=1&amp;query=LAMP+LIGHT+BOOKS+HOTEL+福岡" class="text-sky-500 text-sm">MAP</a>
                 </div>
             </div>
+			</div>
         </div>
 
         <!-- TAB 1: 行程 -->
@@ -644,7 +648,7 @@
             <div class="card p-6">
                 <div class="flex justify-between items-center">
                     <div>
-                        <div class="font-bold text-lg">Day 1: Hotel Rotterdam</div>
+                        <div class="font-bold text-sm">Day 1: Hotel Rotterdam</div>
                         <div class="text-xs text-gray-500">園內住宿</div>
                     </div>
                     <a href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Rotterdam+Huis+Ten+Bosch" class="text-sky-500 text-sm">MAP</a>
@@ -653,7 +657,7 @@
             <div class="card p-6">
                 <div class="flex justify-between items-center">
                     <div>
-                        <div class="font-bold text-lg">Day 2-3: Hilton Nagasaki</div>
+                        <div class="font-bold text-sm">Day 2-3: Hilton Nagasaki</div>
                         <div class="text-xs text-gray-500">長崎站前</div>
                     </div>
                     <a href="https://www.google.com/maps/search/?api=1&amp;query=Hilton+Nagasaki" class="text-sky-500 text-sm">MAP</a>
@@ -662,7 +666,7 @@
 			<div class="card p-6">
                 <div class="flex justify-between items-center">
                     <div>
-                        <div class="font-bold text-lg">Day 4: Nagasaki Marriott Hotel</div>
+                        <div class="font-bold text-sm">Day 4: Nagasaki Marriott Hotel</div>
                         <div class="text-xs text-gray-500">長崎市中心</div>
                     </div>
                     <a href="https://www.google.com/maps/search/?api=1&amp;query=Nagasaki+Marriott+Hotel" class="text-sky-500 text-sm">MAP</a>
@@ -671,7 +675,7 @@
 			<div class="card p-6">
                 <div class="flex justify-between items-center">
                     <div>
-                        <div class="font-bold text-lg">Day 5: 佐賀 HAGAKUNE 2</div>
+                        <div class="font-bold text-sm">Day 5: 佐賀 HAGAKUNE 2</div>
                         <div class="text-xs text-gray-500">佐賀</div>
                     </div>
 					<a href="https://www.google.com/maps/search/?api=1&query=HAGAKUNE+2+佐賀" target="_blank" class="text-sky-500 text-sm">MAP</a>
@@ -680,7 +684,7 @@
             <div class="card p-6">
                 <div class="flex justify-between items-center">
                     <div>
-                        <div class="font-bold text-lg">Day 6-10: LAMP LIGHT BOOKS HOTEL</div>
+                        <div class="font-bold text-sm">Day 6-10: LAMP LIGHT BOOKS HOTEL</div>
                         <div class="text-xs text-gray-500">福岡</div>
                     </div>
                     <a href="https://www.google.com/maps/search/?api=1&amp;query=LAMP+LIGHT+BOOKS+HOTEL+福岡" class="text-sky-500 text-sm">MAP</a>
@@ -721,7 +725,7 @@
                 <div>
                     <div class="flex items-center gap-3 mb-4">
                         <span class="text-3xl">🚨</span>
-                        <div class="font-bold text-lg">日本緊急電話</div>
+                        <div class="font-bold text-sm">日本緊急電話</div>
                     </div>
                     <div class="grid grid-cols-2 gap-4 text-sm">
                         <div class="bg-red-50 p-5 rounded-3xl text-center">
