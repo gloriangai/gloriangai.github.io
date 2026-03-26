@@ -91,6 +91,8 @@
         .flex.border-b button { transition: color 0.2s; }
         a { text-decoration: none; }
         .text-sky-500:hover { color: #0284c8; }
+
+		.todo-item { padding: 12px 16px; border-radius: 9999px; background: #fce7f3; margin-bottom: 8px; }
     </style>
 </head>
 <body class="min-h-screen pb-12">
@@ -120,7 +122,7 @@
             <i class="fas fa-calendar-alt"></i> 行程
         </button>
         <button onclick="switchTab(2)" id="tab2" class="flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
-            <i class="fas fa-hotel"></i> 住宿
+            <i class="fas fa-hotel"></i> TO-DO
         </button>
         <button onclick="switchTab(3)" id="tab3" class="flex-1 py-4 text-sm font-medium flex items-center justify-center gap-2">
             <i class="fas fa-calculator"></i> 預算
@@ -645,54 +647,60 @@
             </div>
         </div>
 
-        <!-- TAB 2: 住宿 -->
-        <div id="tab-content-2" class="hidden space-y-6">
-            <div class="card p-6">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <div class="font-bold text-sm">Day 1: Hotel Rotterdam</div>
-                        <div class="text-xs text-gray-500">園內住宿</div>
-                    </div>
-                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Rotterdam+Huis+Ten+Bosch" class="text-sky-500 text-sm">MAP</a>
-                </div>
-            </div>
-            <div class="card p-6">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <div class="font-bold text-sm">Day 2-3: Hilton Nagasaki</div>
-                        <div class="text-xs text-gray-500">長崎站前</div>
-                    </div>
-                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Hilton+Nagasaki" class="text-sky-500 text-sm">MAP</a>
-                </div>
-            </div>
-			<div class="card p-6">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <div class="font-bold text-sm">Day 4: Nagasaki Marriott Hotel</div>
-                        <div class="text-xs text-gray-500">長崎市中心</div>
-                    </div>
-                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Nagasaki+Marriott+Hotel" class="text-sky-500 text-sm">MAP</a>
-                </div>
-            </div>
-			<div class="card p-6">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <div class="font-bold text-sm">Day 5: 佐賀 HAGAKUNE 2</div>
-                        <div class="text-xs text-gray-500">佐賀</div>
-                    </div>
-					<a href="https://www.google.com/maps/search/?api=1&query=HAGAKUNE+2+佐賀" target="_blank" class="text-sky-500 text-sm">MAP</a>
-                </div>
-            </div>
-            <div class="card p-6">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <div class="font-bold text-sm">Day 6-10: LAMP LIGHT BOOKS HOTEL</div>
-                        <div class="text-xs text-gray-500">福岡</div>
-                    </div>
-                    <a href="https://www.google.com/maps/search/?api=1&amp;query=LAMP+LIGHT+BOOKS+HOTEL+福岡" class="text-sky-500 text-sm">MAP</a>
-                </div>
-            </div>
-        </div>
+        <!-- TAB 2: TO-DO -->
+        <div id="tab-content-2" class="hidden space-y-8">
+	        <div class="card p-8">
+	            <!-- 📍TO-DO -->
+	            <div class="mb-8">
+	                <div class="category-header mb-4"><span class="text-2xl">📍</span> TO-DO</div>
+	                <div class="todo-item flex items-center gap-3"><i class="fas fa-check-circle text-emerald-500"></i> VJW</div>
+	                <div class="todo-item flex items-center gap-3"><i class="fas fa-check-circle text-emerald-500"></i> 野餐墊</div>
+	                <div class="todo-item flex items-center gap-3"><i class="fas fa-check-circle text-emerald-500"></i> 防水膠布</div>
+	            </div>
+	
+	            <!-- 🌸追櫻景點🌸 -->
+	            <div class="mb-8">
+	                <div class="category-header mb-4"><span class="text-2xl">🌸</span> 追櫻景點🌸</div>
+	                
+	                <div class="mb-6">
+	                    <div class="font-semibold text-pink-500 mb-2">🏡長崎</div>
+	                    <div class="text-sm space-y-2">
+	                        <div>• 大村公園（日本櫻花100選 + 歷史公園100選，超過2000株）</div>
+	                        <div>• 島原城（藩政時代著名賞櫻地）</div>
+	                        <div>• 西海橋公園（唯美大橋 + 1000株櫻花）</div>
+	                    </div>
+	                </div>
+	
+	                <div class="mb-6">
+	                    <div class="font-semibold text-pink-500 mb-2">🏡佐賀</div>
+	                    <div class="text-sm space-y-2">
+	                        <div>• 浦之崎站（被稱為「櫻之站」）</div>
+	                        <div>• 小城公園（約3000棵櫻花，日式庭園水景倒影超有風情）</div>
+	                        <div>• 禦船山樂園（九州最大賞夜櫻景點）</div>
+	                    </div>
+	                </div>
+	
+	                <div>
+	                    <div class="font-semibold text-pink-500 mb-2">🏡福岡</div>
+	                    <div class="text-sm space-y-2">
+	                        <div>• 舞鶴公園(福岡城) 櫻花祭 25/3-5/4（約1000棵19種櫻花）</div>
+	                        <div>• 西公園（日本櫻花名所100選，1300棵櫻花）</div>
+	                        <div>• 小倉城（櫻花祭典 + 天守閣眺望櫻花）</div>
+	                    </div>
+	                </div>
+	            </div>
+	
+	            <!-- 💸TO-BUY -->
+	            <div>
+	                <div class="category-header mb-4"><span class="text-2xl">💸</span> TO-BUY</div>
+	                <div class="todo-item">• 買樂樂睡衣</div>
+	                <div class="todo-item">• 買樂樂白襪</div>
+	                <div class="todo-item">• ZO&FRIENDS (PARCO 新館3F)</div>
+	                <div class="todo-item">• 花王除霉噴霧</div>
+	                <div class="todo-item">• LIP OIL</div>
+	            </div>
+	        </div>
+	    </div>
 
         <!-- TAB 3: 預算 -->
         <div id="tab-content-3" class="hidden">
